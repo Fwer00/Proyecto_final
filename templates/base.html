@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Proyecto final</title>
+  <title>{% block title %} #Titulo# {% endblock %}</title>
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -60,17 +60,6 @@
       height: 400px;
       margin: auto ;
     }
-
-    #fotito {
-      background-image: url("https://wallpapercave.com/wp/wp2343903.jpg");
-      background-size: cover; 
-      background-position: center;
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
-      border-bottom-left-radius: 12px;
-      border-bottom-right-radius: 12px; 
-      border: 2px solid #000000
-        }
 
     #opacidad1 {
       opacity: 0.850;
@@ -145,23 +134,17 @@ background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, F
           <img src="https://e7.pngegg.com/pngimages/323/705/png-clipart-user-profile-get-em-cardiovascular-disease-zingah-avatar-miscellaneous-white.png" class="m-3" width="50">
         </a>
       </nav>
-      <div class="container-fluid p-4" id="fotito">
-        <div class="container-fluid d-flex flex-column justify-content-center" style="height: 10vh;" id="achicar">
-          <a class="btn btn-dark" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-            <i class="fas fa-arrow-down"></i>
-          </a>
-        </div>
-        <div class="collapse" id="collapseExample" id="opacidad1">
-          <div class="card card-body video-container" id="opacidad1">
-            <iframe width="500" height="450" src="https://www.youtube.com/embed/DD4zMOvRrzM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-          </div>
-        </div>
-      </div>
+
   </header>
   <main>
 
 
 
+    {% block content %}
+    
+    #Contenido#
+    
+    {% endblock %}
 
 
 
