@@ -72,11 +72,11 @@
       border: 2px solid #000000
         }
 
-    #opacidad {
+    #opacidad1 {
       opacity: 0.850;
     }
 
-    #fondo::before {
+    /*#fondo::before {
     content: "";
     position:absolute;
     top: 225px;
@@ -87,7 +87,7 @@
     background-size: cover;
     opacity: 0.7;
     z-index: -5;
-}
+    }*/
 
     .row {
       border-top-left-radius: 30px;
@@ -98,7 +98,10 @@
   </style>
 </head>
 
-<body id="fondo">
+<body id="fondo" style="background: #bdc3c7;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+">
   <header>
     <nav class="navbar navbar-expand-md bg-black">
         <div class="container-fluid">
@@ -148,8 +151,8 @@
             <i class="fas fa-arrow-down"></i>
           </a>
         </div>
-        <div class="collapse" id="collapseExample" id="opacidad">
-          <div class="card card-body video-container" id="opacidad">
+        <div class="collapse" id="collapseExample" id="opacidad1">
+          <div class="card card-body video-container" id="opacidad1">
             <iframe width="500" height="450" src="https://www.youtube.com/embed/DD4zMOvRrzM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
           </div>
         </div>
@@ -161,13 +164,10 @@
 
 
 
-    <!-- esto es para hacer espacio-->
-    <div class="container-fluid d-flex flex-column" style="height: 74vh;">
-      <div class="row flex-grow-1"></div>
-    <!-- espacio -->
+
   </main>
   <footer>
-    <div class="container-fluid" id="opacidad">
+    <div class="container-fluid" id="opacidad1">
       <div class="row bg-black p-5 text-white">
         <div class="col-sm-3 col-md-3 col-lg-3 pt-2">
           <p class="h3">Nuestras redes:</p>
