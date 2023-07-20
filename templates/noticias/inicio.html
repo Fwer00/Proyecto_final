@@ -1,0 +1,84 @@
+{% extends 'index.html'%}
+{% block titulo %} Home {% endblock titulo %}
+{% block contenido%}
+
+
+{% for noticia in noticias %}
+
+<h2><a href="{% url 'noticias:contenido' noticia.pk %}"> <strong>{{ noticia.titulo }}</strong></a></h2>
+<img src="{{ noticia.imagen.url }}" alt="" width="200">
+<p>{{ noticia.cuerpo }}</p>
+<p>{{noticia.fecha}}</p>
+<p>categoria: {{noticia.categoria_noticia}}</p>
+{% if perms.is_superuser %}
+<tr>
+    <!-- Formulario para eliminar un registro desde la misma tabla HTML -->                        
+    <form method="POST" action="admin/noticias/noticia/{{noticia.pk}}/delete">
+      {% csrf_token %}
+      <div class="btn-group">
+    
+        <!-- Creamos 3 botones Detalle, Editar y Eliminar -->
+        <a href="{% url 'noticias:contenido' noticia.pk %}" title="Detalle" type="button" class="btn btn-success"> Ver </a>
+        <a href="admin/noticias/noticia/{{noticia.pk}}/" title="Editar" type="button" class="btn btn-primary"> Editar </a>
+        <button class="btn btn-danger" onclick="return eliminar();" type="submit">
+        Eliminar
+        </button>
+      </div>
+    </form>
+
+  </td>
+</tr>
+{% endif %}
+
+</tbody>
+</table>
+
+
+<body>
+  
+  <div class="nav-scroller py-1 mb-3 border-bottom">
+    <nav class="container">
+      <a href="{% url 'noticias:inicio' %}"> Todas</a>
+      {% for c in categorias %}
+      <a href="?id={{c.pk}}">{{c.nombre}}</a>
+      {% endfor %}
+    </nav>
+  </div>
+  
+  <div  class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary" style="background-repeat: no-repeat; background-image: url('{{ noticia.imagen.url }}'); background-attachment: fixed; background-size: 100% 100%;" >
+    <div class="col-lg-6 px-0">
+      <h1 class="display-4 fst-italic">{{ noticia.titulo }}</h1>
+      <p class="lead my-3">{{ noticia.cuerpo }}</p>
+      <p class="lead mb-0"><a href="{% url 'noticias:contenido' noticia.pk %}" class="text-body-emphasis fw-bold">Seguir leyendo</a></p>
+    </div>
+  </div>
+  <br></br>
+
+  <div class="container" class="row mb-2">
+    <div class="col-md-6">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-primary-emphasis">{{noticia.categoria_noticia}}</strong>
+          <h3 class="mb-0">Featured post</h3>
+          <div class="mb-1 text-body-secondary">Nov 12</div>
+          <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
+            Continue reading
+            <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
+          </a>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+{% if perms.is_superuser %}
+<div align="left" class="container" class="btn_crear mb-3">
+    <a href="admin/noticias/noticia/add/" type="button" class="btn btn-primary">Agregar noticia</a>
+</div>
+{% endif %}
+<br></br>
+{% endfor %}
+{% endblock contenido%}
