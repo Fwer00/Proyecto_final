@@ -30,3 +30,4 @@ def Contenido_Noticias(request, pk):
     contexto['noticia'] = n
 
     return render(request, 'noticias/contenido.html', contexto)
+
