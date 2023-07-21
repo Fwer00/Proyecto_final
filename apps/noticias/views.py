@@ -4,7 +4,7 @@ from .models import Noticia, Categoria
 
 #Para cuando creemos el login
 #from django.contrib.auth.decorators import login_required
-#login_required
+#@login_required
 def inicio(request):
     contexto = {}
     id_categoria = request.GET.get('id', None)
@@ -16,8 +16,8 @@ def inicio(request):
 
     contexto['noticias'] = n
 
-    cat = Categoria.objects.all().order_by('nombre')
-    contexto['categorias'] = cat
+    cate = Categoria.objects.all().order_by('nombre')
+    contexto['categorias'] = cate
 
     return render(request, 'noticias/inicio.html', contexto)
 

@@ -10,10 +10,11 @@ class Categoria(models.Model):
 
 
 class Noticia(models.Model):
-    titulo = models.CharField(max_length=150)
-    cuerpo = models.TextField()
+    titulo = models.CharField(max_length=45, null=False)
+    resumen = models.CharField(max_length=100, null=False)
+    cuerpo = models.TextField(null=False)
     fecha = models.DateTimeField(auto_now_add=True)
-    imagen = models.ImageField(upload_to='noticias')
+    imagen = models.ImageField(upload_to='noticias', null=True)
     categoria_noticia = models.ForeignKey(Categoria, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
