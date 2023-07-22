@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<title>
+    {% block title %} JDD | CONTACTO {% endblock %}
+ </title>
+<div class="row">
+<hr>
+    <div class="col-12 col-md-6 offset-md-3">
+        
+        <div class="card">
+            <div class="card-body"></div>
+            <h2>Contactanos</h2>
+            <hr>
+            <form action="{% url 'contacto' %}" class="" method="post">
+
+            {% csrf_token %}
+        
+            {{ form.as_p}}
+            <hr>
+        
+            <br>
+            <div class="d-flex justify-content-end">
+                <input type="reset" value="Cancelar" class="btn btn-secondary">
+                &nbsp;
+                <button type="submit" id="btnEnviar" class="button btn-primary">Enviar</button>
+            </div> 
+        
+        </form>
+        {{mensaje}}
+        </div>
+        
+    </div>
+</div>
+
+<table id="tablacontactos">
+
+</table>
+
+<br>
+
+{% endblock %}
