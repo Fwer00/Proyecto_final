@@ -2,8 +2,6 @@
 <html lang="en">
 
 <head>
-  <title>{% block title %} #Titulo# {% endblock %}</title>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -94,7 +92,7 @@ background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, F
   <header>
     <nav class="navbar navbar-expand-md bg-black">
         <div class="container-fluid">
-          <a class="navbar-brand text-light" href="#">
+          <a class="navbar-brand text-light" href="{%url 'index' %}">
             <img src="https://pbs.twimg.com/profile_images/1469211998151839747/T7npI8eY_400x400.jpg" alt="logo" width="50">
           </a>  
           <button class="navbar-toggler mb-2 mt-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -106,7 +104,7 @@ background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, F
                 <a class="nav-link active text-light" aria-current="page" href="https://www.sa.playblackdesert.com/es-MX/Main/Index">Descargar</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active text-light" aria-current="page" href="#">Noticias</a>
+                <a class="nav-link active text-light" aria-current="page" href="{% url 'noticias:inicio' %}">Noticias</a>
               </li>
 
               <li class="nav-item dropdown">
@@ -121,10 +119,10 @@ background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, F
                 </ul>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-light" href="#">Sobre nosotros</a>
+                <a class="nav-link text-light" href="{%url 'nosotros' %}">Sobre nosotros</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active text-light" href="#">Contacto</a>
+                <a class="nav-link active text-light" href="{%url 'contacto' %}">Contacto</a>
               </li>
             </ul>
           </div>
@@ -142,7 +140,7 @@ background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, F
 
     {% block content %}
     
-    #Contenido#
+
     
     {% endblock %}
 

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block titulo%} Noticia {%endblock titulo%}
+{% block content%}
+
+<h1>{{noticia}}</h1>
+<img src="{{noticia.imagen.url}}" alt="" width="150">
+<p>{{noticia.cuerpo}}</p>
+<p>{{noticia.fecha}}</p>
+<p>{{noticia.categoria_noticia}}</p>
+{% if perms.is_superuser %}
+<tr>
+  <!-- Formulario para eliminar un registro desde la misma tabla HTML -->                        
+  <form method="POST" action="admin/noticias/noticia/{{noticia.pk}}/delete">
+    {% csrf_token %}
+    <div class="btn-group">
+      <!-- Creamos 3 botones Detalle, Editar y Eliminar -->
+      <a href="admin/noticias/noticia/{{noticia.pk}}/" title="Editar" type="button" class="btn btn-primary"> Editar </a>
+      <button class="btn btn-danger" onclick="return eliminar();" type="submit">Eliminar</button>
+    </div>
+  </form>
+</tr>
+{% endif %}
+<br></br>
+
+<br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+
+{% endblock content%}
