@@ -23,7 +23,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
-    path('contacto/', views.contacto, name='contacto'),
+    path('', include('apps.contacto.urls')),
     path('nosotros/', views.nosotros, name='nosotros'),
     path('noticias/', include('apps.noticias.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

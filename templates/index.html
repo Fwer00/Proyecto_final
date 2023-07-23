@@ -1,24 +1,23 @@
+{% extends 'base.html'%}
 
-  
+{% block title %} Home {% endblock  %}
+
+{% block content %}
+
 <style>
-    #fotito {
-      background-image: url("https://wallpapercave.com/wp/wp2343903.jpg");
-      background-size: cover; 
-      background-position: center;
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
-      border-bottom-left-radius: 12px;
-      border-bottom-right-radius: 12px; 
-      border: 2px solid #000000
-        }
+  #fotito {
+    background-image: url("https://wallpapercave.com/wp/wp2343903.jpg");
+    background-size: cover; 
+    background-position: center;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px; 
+    border: 2px solid #000000
+      }
 </style>
 
 
-
-{% extends 'base.html'%}
-
-{% block titulo %} Home {% endblock titulo %}
-{% block content %}
 
   <div class="container-fluid p-4" id="fotito">
     <div class="container-fluid d-flex flex-column justify-content-center" style="height: 10vh;" id="achicar">
@@ -35,4 +34,4 @@
   <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
   
 
-{%endblock content%}
+{% endblock %}
