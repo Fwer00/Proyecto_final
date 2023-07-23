@@ -25,6 +25,14 @@ SECRET_KEY = 'django-insecure--v=!5sn57z7uho(_^2!3q0$hxv34zebc+-zj#^wp4s-7g2ngym
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'jugadoresdeldesiertoblog@gmail.com'
+EMAIL_HOST_PASSWORD = 'pvzxruklixkxetvn'
+EMAIL_USE_TLS = True
+
+
 ALLOWED_HOSTS = []
 
 
@@ -39,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.usuarios',
     'apps.noticias',
+    'apps.contacto',
 ]
 
 MIDDLEWARE = [
