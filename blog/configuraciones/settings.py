@@ -33,6 +33,9 @@ EMAIL_HOST_PASSWORD = 'pvzxruklixkxetvn'
 EMAIL_USE_TLS = True
 
 
+AUTH_USER_MODEL = 'usuarios.Usuario'
+
+
 ALLOWED_HOSTS = []
 
 
