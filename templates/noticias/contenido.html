@@ -1,27 +1,83 @@
 {% extends 'base.html' %}
 {% block titulo%} Noticia {%endblock titulo%}
+
 {% block content%}
 
-<h1>{{noticia}}</h1>
-<img src="{{noticia.imagen.url}}" alt="" width="150">
-<p>{{noticia.cuerpo}}</p>
-<p>{{noticia.fecha}}</p>
-<p>{{noticia.categoria_noticia}}</p>
-{% if perms.is_superuser %}
-<tr>
-  <!-- Formulario para eliminar un registro desde la misma tabla HTML -->                        
-  <form method="POST" action="admin/noticias/noticia/{{noticia.pk}}/delete">
-    {% csrf_token %}
-    <div class="btn-group">
-      <!-- Creamos 3 botones Detalle, Editar y Eliminar -->
-      <a href="admin/noticias/noticia/{{noticia.pk}}/" title="Editar" type="button" class="btn btn-primary"> Editar </a>
-      <button class="btn btn-danger" onclick="return eliminar();" type="submit">Eliminar</button>
-    </div>
-  </form>
-</tr>
-{% endif %}
-<br></br>
+    <div class="container mt-5">
+      <div class="row">
+        {% if perms.is_superuser %}
+          <tr>
+            <!-- Formulario para eliminar un registro desde la misma tabla HTML -->                        
+            <form method="POST" action="admin/noticias/noticia/{{noticia.pk}}/delete">
+              {% csrf_token %}
+              <div class="btn-group">
+                <a href="admin/noticias/noticia/{{noticia.pk}}/" title="Editar" type="button" class="btn btn-primary"> Editar </a>
+                <button class="btn btn-danger" onclick="return eliminar();" type="submit">Eliminar</button>
+              </div>
+            </form>
+          </tr>
+        {% endif %}
+        <br></br>
+        <div class=" d-flex flex-column h-100 p-5 pb-3" style="background-color: rgba(0, 0, 0, 0.25); border-radius: 8px;">
+          <!-- Post content-->
+          <article class="text-white text-shadow-1">
+              <!-- Post header-->
+              <header class="mb-4">
+                  <!-- Post title-->
+                  <h1 class="fw-bolder mb-1">{{noticia}}</h1>
+                  <!-- Post meta content-->
+                  <div class="text-muted fst-italic mb-2">Publicado el {{noticia.fecha}}</div>
+                  <!-- Post categories-->
+                  <a class="badge bg-secondary text-decoration-none link-light">{{noticia.categoria_noticia}}</a>
 
-<br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+              </header>
+              <section class="mb-5">
+                <p class="fs-5 mb-4">{{noticia.resumen}}</p>
+              </section>
+              <!-- Preview image figure-->
+
+              <figure class="mb-4"><img class="img-fluid rounded" src="{{noticia.imagen.url}}" alt="..." width="300" height="300" align="right" style="border-radius: 8px;"/></figure>
+              <!-- Post content-->
+              <section class="mb-5">
+                  <p class="fs-5 mb-4">{{noticia.cuerpo}}</p>
+              </section>
+          </article>
+          <br></br>
+          <!-- Comments section-->
+            <section class="mb-5">
+                <div class="card bg-light">
+                    <div class="card-body">
+                      <!-- Comment form-->
+                      <form class="mb-4" action="{% url 'noticias:comentar' %}" method="post">{% csrf_token %}
+
+                        <textarea class="form-control" name="comentario" rows="3" placeholder="Escribe un comentario..."></textarea>
+                        <input type="text" name="id_noticia" value="{{ noticia.pk }}" hidden="">
+                        <div class="d-grid gap-2">
+                            <input class="btn btn-secondary rounded-pill px-3" type="submit" value="comentar" >
+                        </div>
+                    
+                      </form>
+                      <h3>Comentarios</h3>
+                      <!-- Single comment-->
+                        {% for com in comentarios %}
+                          <div class="d-flex">
+                            <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                            <div class="ms-3">
+                              <div class="fw-bold">User</div>
+                              {{ com.texto }}
+                              <div class="text-muted fst-italic mb-2">
+                                {{ com.fecha }}
+                              </div>
+                            </div>
+                          </div>
+                        {% endfor %}
+                    </div>
+              </div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <br></br><br></br>
 
 {% endblock content%}
