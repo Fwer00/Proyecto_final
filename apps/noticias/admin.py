@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Categoria, Noticia
+from .models import Categoria, Noticia, Comentario
 
 # Register your models here.
 #@admin.register(Noticia)
@@ -7,4 +7,5 @@ from .models import Categoria, Noticia
     #list_display = ()
 admin.site.register(Categoria)
 admin.site.register(Noticia)
+admin.site.register(Comentario)
 

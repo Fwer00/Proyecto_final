@@ -41,3 +41,14 @@ class Post(models.Model):
         self.imagen.delete(self.imagen.name)
         super().delete()
 
+
+#from apps.usuarios.models import Usuario
+class Comentario(models.Model):
+    texto = models.TextField(null=True)
+    fecha = models.DateTimeField(auto_now_add=True)
+    noticia = models.ForeignKey(Noticia, on_delete=models.CASCADE)
+    #usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return f"{self.noticia} {self.texto}"
+
