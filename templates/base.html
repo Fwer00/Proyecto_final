@@ -152,8 +152,15 @@ background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, F
 
 
   <div>
-    <a href="{% url 'login' %}">Iniciar sesión</a>
+    
+
+    
+    {% if user.is_authenticated %}
+    <h3>Bienvenido {{ user.username }}</h3>
     <a href="{% url 'logout' %}">Cerrar sesión</a>
+    {% else %}
+    <a href="{% url 'login' %}">Iniciar sesión</a>
+    {% endif %}
   </div>
   </main>
   <footer>
