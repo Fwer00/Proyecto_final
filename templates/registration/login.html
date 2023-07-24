@@ -23,6 +23,9 @@
                 <button type="submit" class="btn btn-success btn-lg px-3">Iniciar sesión</button>
             </div>
         </form>
+        <div>
+            <a style="color: black;" href="{% url 'apps.usuarios:password_reset' %}">¿Olvidaste tu contraseña?</a>
+        </div>
     </center>
 
 {% endblock %}
