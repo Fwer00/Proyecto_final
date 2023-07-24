@@ -143,7 +143,6 @@ background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, F
   <main>
 
 
-
     {% block content %}
     
 
@@ -152,6 +151,10 @@ background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, F
 
 
 
+  <div>
+    <a href="{% url 'login' %}">Iniciar sesión</a>
+    <a href="{% url 'logout' %}">Cerrar sesión</a>
+  </div>
   </main>
   <footer>
     <div class="container-fluid" id="opacidad1">
