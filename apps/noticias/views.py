@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse
+from django.http import HttpResponseRedirect
 from .models import Noticia, Categoria
 # Create your views here.
 
@@ -31,3 +32,14 @@ def Contenido_Noticias(request, pk):
 
     return render(request, 'noticias/contenido.html', contexto)
 
+
+#BRRA BUSQUEDA
+def busqueda(request):
+    if request.method == "POST":
+        busquedaa = request.POST['busquedaa']
+        resultados = Noticia.objects.filter(titulo__contains=busquedaa)
+
+        return render(request, 'busqueda.html', {'busquedaa':busquedaa,
+                                                 'resultados': resultados})
+    else:
+        return render(request, 'busqueda.html', {})

@@ -11,4 +11,7 @@ urlpatterns = [
 
     path('<int:pk>', views.Contenido_Noticias, name='contenido'),
     path("admin/", admin.site.urls),
+
+    #barra busqueda
+    path('busqueda/', views.busqueda, name='busqueda'),
 ]
