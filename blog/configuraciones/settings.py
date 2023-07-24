@@ -12,12 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 
-from django.urls import reverse_lazy
 
 
-LOGIN_REDIRECT_URL = reverse_lazy('index')
-LOGOUT_REDIRECT_URL = reverse_lazy('index')
-LOGIN_URL = reverse_lazy('login')
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -40,6 +36,7 @@ EMAIL_HOST_USER = 'jugadoresdeldesiertoblog@gmail.com'
 EMAIL_HOST_PASSWORD = 'pvzxruklixkxetvn'
 EMAIL_USE_TLS = True
 
+site_name = 'JDD'
 
 AUTH_USER_MODEL = 'usuarios.Usuario'
 

@@ -27,7 +27,6 @@ urlpatterns = [
     path('', include('apps.contacto.urls')),
     path('nosotros/', views.nosotros, name='nosotros'),
     path('noticias/', include('apps.noticias.urls')),
-
-    path('login', auth.LoginView.as_view(template_name='usuarios/login.html'), name='login'),
-    path('logout', auth.LogoutView.as_view(), name='logout'),
+    path('', include('apps.usuarios.urls')),
+    path('', include('django.contrib.auth.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
