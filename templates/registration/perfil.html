@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Perfil{% endblock %}
+
+{% block content %}
+  <h1>Bienvenido, {{ user.username }}!</h1>
+  <div>
+    {% if user.imagen %}
+      <img src="{{ user.imagen.url }}" alt="Profile picture" width="150" height="150">
+    {% else %}
+      <img src="{% static 'user-default.jpg' %}" alt="Default profile picture" width="150" height="150">
+    {% endif %}
+  </div>
+
+{% endblock %}
