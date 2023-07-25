@@ -20,10 +20,38 @@ from . import views
 from django.conf.urls.static import static
 from django.conf import settings
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('', include('apps.contacto.urls')),
     path('nosotros/', views.nosotros, name='nosotros'),
     path('noticias/', include('apps.noticias.urls')),
+    path('personajes/', views.personajes, name='personajes'),
+    path('guerrero/', views.guerrero, name='guerrero'),
+    path('ranger/', views.ranger, name='ranger'),
+    path('hechicera/', views.hechicera, name='hechicera'),
+    path('gigante/', views.gigante, name='gigante'),
+    path('domadora/', views.domadora, name='domadora'),
+    path('musa/', views.musa, name='musa'),
+    path('maehwa/', views.maehwa, name='maehwa'),
+    path('valquiria/', views.valquiria, name='valquiria'),
+    path('kunoichi/', views.kunoichi, name='kunoichi'),
+    path('ninja/', views.ninja, name='ninja'),
+    path('mago/', views.mago, name='mago'),
+    path('bruja/', views.bruja, name='bruja'),
+    path('mystic/', views.mystic, name='mystic'),
+    path('striker/', views.striker, name='striker'),
+    path('lahn/', views.lahn, name='lahn'),
+    path('arquero/', views.arquero, name='arquero'),
+    path('dark_knight/', views.dark_knight, name='dark_knight'),
+    path('shai/', views.shai, name='shai'),
+    path('guardiana/', views.guardiana, name='guardiana'),
+    path('hashashin/', views.hashashin, name='hashashin'),
+    path('nova/', views.nova, name='nova'),
+    path('sage/', views.sage, name='sage'),
+    path('corsair/', views.corsair, name='corsair'),
+    path('drakania/', views.drakania, name='drakania'),
+    path('wusa/', views.wusa, name='wusa'),
+    path('maegu/', views.maegu, name='maegu'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
