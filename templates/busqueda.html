@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <center>
+
+    {% if busquedaa %}
+        <h1>Resultados sobre {{busquedaa}} </h1>
+    </center>
+        <br/>
+        {% for noticias in resultados %}
+        <ul id="resultados-busqueda">
+            <li>
+                <a href="{% url 'noticias:contenido' noticias.id %}">{{ noticias }}</a><br/>
+            </li>
+        </ul>
+        {% endfor %}
+    {% else %}
+        <h1>Olvidaste elegir que buscar !</h1>
+    
+    {% endif %}
+
+{% endblock %}

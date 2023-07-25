@@ -1,5 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect
 from .models import Noticia, Categoria, Comentario
+
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 
 # Create your views here.
@@ -47,3 +49,15 @@ def Comentar_Noticia(request):
          noticia=noticia, texto=comentario)
     return redirect(reverse_lazy('noticias:contenido', kwargs={"pk": noti}))
 # falta en coment (usuario=user)
+
+
+#BRRA BUSQUEDA
+def busqueda(request):
+    if request.method == "POST":
+        busquedaa = request.POST['busquedaa']
+        resultados = Noticia.objects.filter(titulo__contains=busquedaa)
+
+        return render(request, 'busqueda.html', {'busquedaa':busquedaa,
+                                                 'resultados': resultados})
+    else:
+        return render(request, 'busqueda.html', {})
