@@ -20,3 +20,10 @@ class LoginForm(forms.Form):
         user = authenticate(request, username=username, password=password)
         if user:
             login(request, user)
+
+
+class ProfilePictureForm(forms.ModelForm):
+
+    class Meta:
+        model = Usuario
+        fields = ['imagen']

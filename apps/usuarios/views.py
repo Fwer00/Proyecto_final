@@ -4,6 +4,9 @@ from django.views.generic import CreateView
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+from .forms import ProfilePictureForm
 
 
 
@@ -34,6 +37,19 @@ class LogoutUsuario(LogoutView):
         return reverse('apps.usuarios:logout')
 
 
+def edit_profile(request):
+    if request.method == 'POST':
+        form = ProfilePictureForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('apps.usuarios:perfil')
+    else:
+        form = ProfilePictureForm(instance=request.user)
+    return render(request, 'registration/edit_profile.html', {'form' : form})
 
+
+@login_required
+def perfil(request):
+    return render(request, 'registration/perfil.html')
 
 
