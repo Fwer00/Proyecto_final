@@ -6,9 +6,9 @@ from django.urls import reverse_lazy
 
 # Create your views here.
 
-#Para cuando creemos el login
-#from django.contrib.auth.decorators import login_required
-#@login_required
+
+from django.contrib.auth.decorators import login_required
+
 def inicio(request):
     contexto = {}
     id_categoria = request.GET.get('id', None)
@@ -25,8 +25,7 @@ def inicio(request):
 
     return render(request, 'noticias/inicio.html', contexto)
 
-#Para cuando creemos el login
-#@login_required
+
 def Contenido_Noticias(request, pk):
     contexto = {}
 
@@ -39,16 +38,16 @@ def Contenido_Noticias(request, pk):
     return render(request, 'noticias/contenido.html', contexto)
 
 
-#@login_required
+@login_required
 def Comentar_Noticia(request):
     comentario = request.POST.get('comentario', None)
-    #user = request.user
+    user = request.user
     noti = request.POST.get('id_noticia', None)
     noticia = Noticia.objects.get(pk=noti)
     coment = Comentario.objects.create(
-         noticia=noticia, texto=comentario)
+         usuario=user ,noticia=noticia, texto=comentario)
     return redirect(reverse_lazy('noticias:contenido', kwargs={"pk": noti}))
-# falta en coment (usuario=user)
+
 
 
 #BRRA BUSQUEDA

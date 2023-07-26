@@ -17,37 +17,23 @@ class Noticia(models.Model):
     imagen = models.ImageField(upload_to='noticias', null=True)
     categoria_noticia = models.ForeignKey(Categoria, on_delete=models.CASCADE)
 
-    def __str__(self) -> str:
-        return self.titulo
-
-    
-class Post(models.Model):
-    titulo = models.CharField(max_length=50, null=False)
-    subtitulo = models.CharField(max_length=100, null=True, blank=True)
-    fecha = models.DateTimeField(auto_now_add=True)
-    texto = models.TextField(null=False)
-    activo = models.BooleanField(default=True)
-    categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True, default='Sin categoría')
-    imagen = models.ImageField(null=True, blank=True, upload_to='media', default='static/post_default.png')
-    publicado = models.DateTimeField(default=timezone.now)
-
     class Meta:
-        ordering = ('-publicado',)
+        ordering = ('-fecha',)
 
     def __str__(self) -> str:
         return self.titulo
-    
+
     def delete(self, using = None, keep_parents = False):
         self.imagen.delete(self.imagen.name)
         super().delete()
 
 
-#from apps.usuarios.models import Usuario
+from apps.usuarios.models import Usuario
 class Comentario(models.Model):
     texto = models.TextField(null=True)
     fecha = models.DateTimeField(auto_now_add=True)
     noticia = models.ForeignKey(Noticia, on_delete=models.CASCADE)
-    #usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
         return f"{self.noticia} {self.texto}"
