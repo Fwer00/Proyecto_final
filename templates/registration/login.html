@@ -5,7 +5,7 @@
 {% block content %}
 
     <center>
-        <form method="POST" style="margin-top:300px;">
+        <form method="POST" style="margin-top:50px;">
             <h1 class="h1">Iniciar sesión</h1>
             <br>
             <div class="messages">
@@ -18,14 +18,18 @@
             <div class="container">
                 <table>{{ form }}</table>
                 <br>
-                <a style="color: black;" href="{% url 'apps.usuarios:registrar' %}">¿Todavía no estás registrado? Regístrate.</a>
+                <a style="color: black;">¿Todavía no estás registrado?</a>
+                <a style="color: black;" href="{% url 'apps.usuarios:registrar' %}">Regístrate.</a>
                 <br><br>
                 <button type="submit" class="btn btn-success btn-lg px-3">Iniciar sesión</button>
             </div>
         </form>
         <div>
+            <br>
             <a style="color: black;" href="{% url 'apps.usuarios:password_reset' %}">¿Olvidaste tu contraseña?</a>
         </div>
+        <br>
+        <br>
     </center>
 
 {% endblock %}

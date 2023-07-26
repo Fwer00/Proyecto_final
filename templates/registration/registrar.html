@@ -5,24 +5,25 @@
 {% block content %}
 
     <center>
-        <form method="POST" enctype="multipart/form-data" style="margin-top: 300px; margin-bottom:100px;">
+        <form method="POST" enctype="multipart/form-data" style="margin-top: 15px; margin-bottom:15px;">
             <h1 class="h1">Registro de usuario</h1>
-            <br>
             <div class="messages">
                 {% for message in messages %}
                     <table {% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</table>
                 {% endfor %}
             </div>
             <div>
-            <br>
             {% csrf_token %}
+            <br>
             <div class="container-fluid">
-                <table {{ form }}></table>
+                <table> {{ form.as_p }} </table>
             </div>
             <br><br>
             <button type="submit" class="btn btn-success btn-lg px-3">Registrar</button>
         </form>
-        <a style="color: black;" href="{% url 'apps.usuarios:login' %}">¿Ya estás registrado? Inicia sesión.</a>
+        <a style="color: black;">¿Ya estás registrado? </a>
+        <a style="color: black;" href="{% url 'apps.usuarios:login' %}">Inicia sesión</a>
+        
 
     </center>
 
