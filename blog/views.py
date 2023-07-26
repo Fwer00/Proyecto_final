@@ -16,7 +16,7 @@ def guerrero(request):
     return render(request, 'personajes\guerrero.html')
 
 def ranger(request):
-    return render(request, 'personajes\ranger.html')
+    return render(request, 'personajes/ranger.html')
 
 def hechicera(request):
     return render(request, 'personajes\hechicera.html')
@@ -34,19 +34,19 @@ def maehwa(request):
     return render(request, 'personajes\maehwa.html')
 
 def valquiria(request):
-    return render(request, 'personajes\valquiria.html')
+    return render(request, 'personajes/valquiria.html')
 
 def kunoichi(request):
     return render(request, 'personajes\kunoichi.html')
 
 def ninja(request):
-    return render(request, 'personajes\ninja.html')
+    return render(request, 'personajes/ninja.html')
 
 def mago(request):
     return render(request, 'personajes\mago.html')
 
 def bruja(request):
-    return render(request, 'personajes\bruja.html')
+    return render(request, 'personajes/bruja.html')
 
 def mystic(request):
     return render(request, 'personajes\mystic.html')
@@ -58,7 +58,7 @@ def lahn(request):
     return render(request, 'personajes\lahn.html')
 
 def arquero(request):
-    return render(request, 'personajes\arquero.html')
+    return render(request, 'personajes/arquero.html')
 
 def dark_knight(request):
     return render(request, 'personajes\dark_knight.html')
@@ -73,7 +73,7 @@ def hashashin(request):
     return render(request, 'personajes\hashashin.html')
 
 def nova(request):
-    return render(request, 'personajes\nova.html')
+    return render(request, 'personajes/nova.html')
 
 def sage(request):
     return render(request, 'personajes\sage.html')
