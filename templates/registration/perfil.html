@@ -12,5 +12,8 @@
       <img src="{% static 'user-default.jpg' %}" alt="Default profile picture" width="150" height="150">
     {% endif %}
   </div>
+  <div>
+    <a href="{% url 'apps.usuarios:editar_perfil' %}" class="btn btn-dark">Cambiar imagen de perfil</a>
+  </div>
 
 {% endblock %}
