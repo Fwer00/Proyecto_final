@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>Editando comentario</h1>
+    <div class="form-group">
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-secondary" type="submit" >Guardar</button>
+        <a href="{% url 'noticias:inicio' %}" class=" btn btn-danger" type="button">Cancelar</a>
+      </form>
+    </div>
+
+
+
+{% endblock %}

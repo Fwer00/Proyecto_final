@@ -7,12 +7,16 @@
         <div>
           <h4 align="left" class="container text-white text-shadow-1" style=" font-family: 'StrongSword_New';" >CATEGORIAS</h4>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
             <ul class="navbar-nav me-auto mb-2 mt-1; col-12 col-lg-auto" style="transform: translateX(10%)" >
               <li class="nav-item mb-3 mb-lg-0 me-lg-3" style="background-color: rgba(45, 45, 45, 0.25); border-radius: 8px;"><a href="{% url 'noticias:inicio' %}" class="nav-link active text-light" aria-current="page" > Todas</a></li>
               {% for c in categorias %}
                 <li class="nav-item mb-3 mb-lg-0 me-lg-3" style="background-color: rgba(45, 45, 45, 0.25); border-radius: 8px;"><a href="?id={{c.pk}}" class="nav-link active text-light" aria-current="page" >{{c.nombre}}</a></li>
               {% endfor %}
+              {% if perms.is_superuser or perms.noticias.add_categoria  %}
+              <div align="center" class="container" class="btn_crear">
+                <a href="admin/noticias/categoria/add/" type="button" class="btn text-white rounded-pill">+</a>
+              </div>
+            {% endif %}
             </ul> 
 
             <form class="d-flex; navbar-nav me-auto mb-2 mt-1 mb-lg-0 me-lg-3" method=POST action="{% url 'noticias:busqueda' %}" style="position: absolute; right: 0;">
@@ -20,12 +24,7 @@
               <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search" name="busquedaa">
               <button class="btn btn-outline-secondary" type="submit">Buscar</button>
             </form>
-          
-
-            <!--intente hacer un buscador
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-              <input type="search" class="form-control" placeholder="Buscar" aria-label="Search">
-            </form> -->
+        
           </div>
         </div>
       </div>
@@ -61,5 +60,5 @@
         <a href="admin/noticias/noticia/add/" type="button" class="btn btn-primary">Agregar noticia</a>
       </div>
     {% endif %}
-    <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br>
+    <br></br><br></br><br></br>
 {% endblock content%}

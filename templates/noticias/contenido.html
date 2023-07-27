@@ -2,7 +2,6 @@
 {% block titulo%} Noticia {%endblock titulo%}
 
 {% block content%}
-
     <div class="container mt-5">
       <div class="row">
         {% if perms.is_superuser or perms.noticias.change_noticia and perms.noticias.delete_noticia  %}
@@ -10,14 +9,14 @@
             <!-- Formulario para eliminar un registro desde la misma tabla HTML -->                        
             <form method="POST" action="admin/noticias/noticia/{{noticia.pk}}/delete">
               {% csrf_token %}
-              <div class="btn-group">
-                <a href="admin/noticias/noticia/{{noticia.pk}}/" title="Editar" type="button" class="btn btn-primary"> Editar </a>
+              <div class="d-flex justify-content-center">
+                <a href="admin/noticias/noticia/{{noticia.pk}}/" title="Editar" type="button" class="btn btn-primary" style="border-radius: 7px;"> Editar </a>
                 <button class="btn btn-danger" type="submit">Eliminar</button>
               </div>
             </form>
           </tr>
         {% endif %}
-        <br></br>
+
         <div class=" d-flex flex-column h-100 p-5 pb-3" style="background-color: rgba(0, 0, 0, 0.25); border-radius: 8px;">
           <!-- Post content-->
           <article class="text-white text-shadow-1">
@@ -28,7 +27,7 @@
                   <!-- Post meta content-->
                   <div class="text-muted fst-italic mb-2">Publicado el {{noticia.fecha}}</div>
                   <!-- Post categories-->
-                  <a class="badge bg-secondary text-decoration-none link-light">{{noticia.categoria_noticia}}</a>
+                  <a class="badge bg-secondary text-decoration-none link-light" href="{% url 'noticias:inicio' %}?id={{noticia.categoria_noticia_id}}">{{noticia.categoria_noticia}}</a>
 
               </header>
               <section class="mb-5">
@@ -48,7 +47,7 @@
             <div class="card bg-light">
                 <div class="card-body">
                     <!-- Comment form-->
-                    <form class="mb-4" action="{% url 'noticias:comentar' %}" method="post">{% csrf_token %}
+                    <form class="mb-4" action="{% url 'noticias:comentar' %}" method="post">{% csrf_token %} 
                       <textarea class="form-control" name="comentario" rows="3" placeholder="Escribe un comentario..."></textarea>
                       <input type="text" name="id_noticia" value="{{ noticia.pk }}" hidden="">
                       <div class="d-grid gap-2">
@@ -58,31 +57,37 @@
                     <h3>Comentarios</h3>
                     <!-- Single comment-->
                     {% for com in comentarios %}
-                          <div class="d-flex">
-                            <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                            <div class="ms-3">
-                              <div class="fw-bold">{{ com.usuario }}</div>
-                              {{ com.texto }}
-                              <div class="text-muted fst-italic mb-2">
-                                {{ com.fecha }}
-                              </div>
+                        <div class="d-flex">
+                          <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                          <div class="ms-3">
+                            <div class="fw-bold">{{ com.usuario }}</div>
+                            {{ com.texto }}
+                            <div class="text-muted fst-italic mb-2">
+                              {{ com.fecha }}
                             </div>
                           </div>
+                        </div>
+                        {% if perms.is_superuser or perms.noticias.change_comentario and perms.noticias.delete_comentario %}
+                          <tr>
+                            <!-- Formulario para eliminar un registro desde la misma tabla HTML -->                        
+                            <form method="POST" action="{% url 'noticias:eliminar' %}">
+                              {% csrf_token %}
+                              <div class="btn-group d-flex ">
+                                <a href="{% url 'noticias:editar' com.pk %}" type="button" class="btn btn-secondary"> Editar </a>
+                                <input class="btn btn-dark" onclick='return Borrar()' type="submit" value="Eliminar" ></input>
+                                <script>
+                                  function Borrar()
+                                  {if(confirm('¿Estas seguro que deseas borrar este Comentario? Volveras al inicio de noticias.')){return true;}else{return false;}}
+                                  </script>
+                              </div>
+                            </form>
+                          </tr>
+                          <br></br> 
+                        {% endif %}
+                        
 
-                          {% if perms.is_superuser or perms.noticias.change_comentario and perms.noticias.delete_comentario  %}
-                            <tr>
-                              <!-- Formulario para eliminar un registro desde la misma tabla HTML -->                        
-                              <form method="POST" action="admin/noticias/comentario/{{com.pk}}/delete">
-                                {% csrf_token %}
-                                <div class="btn-group">
-                                  <a href="admin/noticias/comentario/{{com.pk}}/" title="Editar" type="button" class="btn btn-primary"> Editar </a>
-                                  <button class="btn btn-danger" type="submit">Eliminar</button>
-                                </div>
-                              </form>
-                            </tr>
-                          {% endif %}
-                        {% endfor %}
-                    </div>
+                    {% endfor %}
+                  </div>
               </div>
           </section>
         </div>
