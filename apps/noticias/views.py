@@ -1,44 +1,70 @@
 from django.shortcuts import render, HttpResponse, redirect
 from .models import Noticia, Categoria, Comentario
-
+from django.views.generic.edit import UpdateView
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
-
-# Create your views here.
-
-
-from django.contrib.auth.decorators import login_required
-
-def inicio(request):
-    contexto = {}
-    id_categoria = request.GET.get('id', None)
-
-    if id_categoria:
-        n = Noticia.objects.filter(categoria_noticia=id_categoria)
-    else:
-        n = Noticia.objects.all()  
-
-    contexto['noticias'] = n
-
-    cate = Categoria.objects.all().order_by('nombre')
-    contexto['categorias'] = cate
-
-    return render(request, 'noticias/inicio.html', contexto)
+from django.views.generic.base import View
+from django.shortcuts import get_object_or_404
+from .forms import ComentarioForm
 
 
-def Contenido_Noticias(request, pk):
-    contexto = {}
+class Inicio(View):
+    def get(self, request, *args, **kwargs):
+        id_categoria = request.GET.get('id', None)
+        if id_categoria:
+            n = Noticia.objects.filter(categoria_noticia=id_categoria)
+        else:
+            n = Noticia.objects.all() 
 
-    n = Noticia.objects.get(pk=pk)
-    contexto['noticia'] = n
+        cate = Categoria.objects.all().order_by('nombre')
+        contexto = {
+            'noticias':n,
+            'categorias': cate,
+        }
+        return render(request, 'noticias/inicio.html', contexto)
 
-    c = Comentario.objects.filter(noticia=n)
-    contexto['comentarios'] = c
 
-    return render(request, 'noticias/contenido.html', contexto)
+class Contenido_Noticias(View):
+    def get(self, request, pk, *args, **kwargs):
+        noticia = Noticia.objects.get(pk=pk)
+        comentarios = Comentario.objects.filter(noticia=noticia).order_by('-fecha')
+
+        contexto = {
+            'noticia':noticia,
+            'comentarios':comentarios,
+        }
+        return render(request, 'noticias/contenido.html', contexto)
+    
+    def noticia(self, request, pk, *args, **kwargs):
+        noticia = Noticia.objects.get(pk=pk)
+
+        comentarios = Comentario.objects.filter(noticia=noticia).order_by('-fecha')
+        contexto = {
+            'noticia':noticia,
+            'comentarios':comentarios,
+        }
+        return render(request, 'noticias/contenido.html', contexto)
+    
+
+class Editar_ComentarioView(UpdateView):
+    model = Comentario
+    form_class = ComentarioForm
+    template_name = 'noticias/edicion.html'
 
 
-@login_required
+
+
+
+
+
+
+    
+def Eliminar_Comentario(request):
+    user = request.user
+    noti = request.POST.get('noticia_id', None)
+    Comentario.objects.filter(usuario_id=user).delete()
+    return redirect(reverse_lazy('noticias:inicio'))
+
 def Comentar_Noticia(request):
     comentario = request.POST.get('comentario', None)
     user = request.user

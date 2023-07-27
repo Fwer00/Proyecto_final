@@ -1,5 +1,8 @@
 from django.db import models
+from django.db.models.query import QuerySet
 from django.utils import timezone
+from apps.usuarios.models import Usuario
+from django.urls import reverse
 
 # Create your models here.
 class Categoria(models.Model):
@@ -15,7 +18,7 @@ class Noticia(models.Model):
     cuerpo = models.TextField(null=False)
     fecha = models.DateTimeField(auto_now_add=True)
     imagen = models.ImageField(upload_to='noticias', null=True)
-    categoria_noticia = models.ForeignKey(Categoria, on_delete=models.CASCADE)
+    categoria_noticia = models.ForeignKey(Categoria, on_delete=models.PROTECT, default=1)
 
     class Meta:
         ordering = ('-fecha',)
@@ -28,13 +31,16 @@ class Noticia(models.Model):
         super().delete()
 
 
-from apps.usuarios.models import Usuario
 class Comentario(models.Model):
     texto = models.TextField(null=True)
     fecha = models.DateTimeField(auto_now_add=True)
     noticia = models.ForeignKey(Noticia, on_delete=models.CASCADE)
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    slug = models.SlugField(max_length=510)
 
     def __str__(self) -> str:
         return f"{self.noticia} {self.texto}"
+    
+    def get_absolute_url(self):
+        return reverse('noticias:inicio')
 

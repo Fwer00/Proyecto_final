@@ -18,15 +18,13 @@ class RegistrarUsuario(CreateView):
         messages.success(self.request, 'Registro exitoso. Por favor, inicia sesión.')
         form.save()
 
-        return redirect('apps.usuarios:registrar')
+        return redirect('apps.usuarios:login')
     
 class LoginUsuario(LoginView):
     template_name = 'registration/login.html'
 
     def get_success_url(self):
-        messages.success(self.request, 'Inicio de sesión exitoso.')
-
-        return reverse('apps.usuarios:login')
+        return reverse('index')
 
 class LogoutUsuario(LogoutView):
     template_name = 'registration/logout.html'
@@ -34,7 +32,7 @@ class LogoutUsuario(LogoutView):
     def get_success_url(self):
         messages.success(self.request, 'Cerrado de sesión exitoso.')
 
-        return reverse('apps.usuarios:logout')
+        return reverse('apps.usuarios:login')
 
 
 def edit_profile(request):
