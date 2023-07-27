@@ -90,3 +90,6 @@ def wusa(request):
 def maegu(request):
     return render(request, 'personajes\maegu.html')
 
+def mapa(request):
+    return render(request, 'mapa\mapa_interactivo.html')
+
