@@ -165,15 +165,9 @@ background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, F
               <li class="nav-item">
                 <a class="nav-link active text-light" href="{%url 'contacto' %}">Contacto</a>
               </li>
-              <form class="d-flex" method=POST action="{% url 'noticias:busqueda' %}">
-                {% csrf_token %}
-                <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search" name="busquedaa">
-                <button class="btn btn-outline-secondary" type="submit">Buscar</button>
-              </form>
             </ul>
             
           </div>
-
           <div>
             <ul>
               {% if user.is_authenticated %}
@@ -185,9 +179,6 @@ background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, F
               {% endif %}
             </ul>
           </div>
-
-          
-
         <div>
           {% if user.is_authenticated %}
             {% if user.imagen %}
@@ -207,17 +198,11 @@ background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, F
 
   </header>
   <main>
-
-
     {% block content %}
     
 
     
     {% endblock %}
-
-
-
-
   </main>
   
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
