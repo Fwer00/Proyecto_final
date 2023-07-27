@@ -16,9 +16,35 @@
             {% csrf_token %}
             <br>
             <div class="container-fluid">
-                <table> {{ form.as_p }} </table>
+                <h6>Nombre de usuario: {{ form.username }}</h6> 
             </div>
-            <br><br>
+            <br>
+            <div class="container-fluid">
+                <h6>Nombre: {{ form.first_name }}</h6>
+            </div>
+            <br>
+            <div class="container-fluid">
+                <h6>Apellido: {{ form.last_name }}</h6> 
+            </div>
+            <br>
+            <div class="container-fluid">
+                <h6>Contraseña: {{ form.password1 }}</h6>
+                <h10>-Debe contener al menos 8 caracteres.</h10><br>
+                <h10>-No puede estar formada exclusivamente por numeros.</h10>
+            </div>
+            <br>
+            <div class="container-fluid">
+                <h6>Confirmar contraseña: {{ form.password2 }}</h6>
+            </div>
+            <br>
+            <div class="container-fluid">
+                <h6>Correo electronico: {{ form.email }} </h6>
+            </div>
+            <br>
+            <div class="container-fluid">
+                <h6>Imagen de perfil: {{ form.imagen }} </h6>
+            </div>
+            <br>
             <button type="submit" class="btn btn-success btn-lg px-3">Registrar</button>
         </form>
         <a style="color: black;">¿Ya estás registrado? </a>

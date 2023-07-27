@@ -56,4 +56,5 @@ urlpatterns = [
     path('drakania/', views.drakania, name='drakania'),
     path('wusa/', views.wusa, name='wusa'),
     path('maegu/', views.maegu, name='maegu'),
+    path('mapa/', views.mapa, name='mapa'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
