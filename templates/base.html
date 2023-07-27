@@ -184,7 +184,7 @@ background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, F
             {% if user.imagen %}
               <a href="{% url 'apps.usuarios:perfil' %}">
                 <img src="{{ user.imagen.url }}" alt="Profile picture" width="60" height="60" style="margin-right:10px;">
-              </a6
+              </a>
             {% else %}
               <img src="{% static 'user-default.jpg' %}" alt="Default profile picture" width="60" height="60" style="margin-right:10px;">
             {% endif %}
