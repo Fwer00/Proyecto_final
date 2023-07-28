@@ -15,27 +15,31 @@
 {% block content%}
     <nav class="navbar navbar-expand-md" style="border-bottom-left-radius: 50px; border-bottom-right-radius: 50px; background-color: rgb(36, 36, 36);">
       <div>
+
         <div>
           <center>
+
           <div style="font-family: 'Marcellus', serif; font-size:40px; color:rgb(255, 255, 255); background-color:rgb(36, 36, 36); border-radius: 30px; margin-left:110%; margin-bottom:20px;">CATEGORIAS</div>
           </center>
        
             <ul class="navbar-nav me-auto mb-2 mt-1; col-12 col-lg-auto" style="transform: translateX(10%)" >
+              
               <li class="nav-item mb-3 mb-lg-0 me-lg-3 btn btn-light" style="font-family: 'Marcellus', serif; background-color: rgba(0, 0, 0); border-radius: 3px; width:85px; position: relative; left: 520px; font-size: 20px;"><a href="{% url 'noticias:inicio' %}" class="nav-link active text-light" aria-current="page">Todas</a></li>
               {% for c in categorias %}
                 <li class="nav-item mb-3 mb-lg-0 me-lg-3 btn btn-light" style="font-family: 'Marcellus', serif; background-color: rgba(0, 0, 0); border-radius: 8px; right: 150px; position: relative; left: 520px; font-size: 20px;"><a href="?id={{c.pk}}" class="nav-link active text-light" aria-current="page" >{{c.nombre}}</a></li>
               {% endfor %}
               {% if perms.is_superuser or perms.noticias.add_categoria  %}
-                <a href="admin/noticias/categoria/add/" type="button" class="btn text-white btn-danger" style="padding-top:13px;">+</a>
-
+                <a href="admin/noticias/categoria/add/" type="button" class="btn text-white btn-danger">+</a>
               {% endif %}
+
             </ul> 
 
-            
+
         
           
         </div>
       </div>
+
     </nav>
     
     {% for noticia in noticias %}
