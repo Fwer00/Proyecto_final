@@ -123,6 +123,10 @@
       border-radius:30px;
     }
 
+  .btn-outline-light:hover {
+    background-color: gray !important;
+    border-color:black !important;
+  }
   </style>
 </head>
 
@@ -164,6 +168,15 @@ background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, F
               </li>
               <li class="nav-item">
                 <a class="nav-link active text-light" href="{%url 'contacto' %}">Contacto</a>
+              </li>
+              <li style="padding-left: 30px;">
+                <div style="background-color: rgb(97, 0, 0); padding: 7px; border-radius: 15px; padding-left: 48px;">
+                  <form class="d-flex; navbar-nav" style="padding-right:15%;" method=POST action="{% url 'noticias:busqueda' %}">
+                    {% csrf_token %}
+                    <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search" name="busquedaa">
+                    <button class="btn btn-outline-light" type="submit">Buscar</button>
+                  </form>
+                </div>
               </li>
             </ul>
             
