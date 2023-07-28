@@ -144,7 +144,7 @@ background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, F
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mt-1">
+            <ul class="navbar-nav me-auto mb-2 mt-1" style="padding-top:16px;">
               <li class="nav-item">
                 <a class="nav-link active text-light" aria-current="page" href="https://www.sa.playblackdesert.com/es-MX/Main/Index">Descargar</a>
               </li>
@@ -170,7 +170,7 @@ background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, F
                 <a class="nav-link active text-light" href="{%url 'contacto' %}">Contacto</a>
               </li>
               <li style="padding-left: 30px;">
-                <div style="background-color: rgb(97, 0, 0); padding: 7px; border-radius: 15px; padding-left: 48px;">
+                <div style="background-color: rgb(36, 36, 36); padding: 7px; border-radius: 15px; padding-left: 47px;">
                   <form class="d-flex; navbar-nav" style="padding-right:15%;" method=POST action="{% url 'noticias:busqueda' %}">
                     {% csrf_token %}
                     <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search" name="busquedaa">
@@ -181,14 +181,18 @@ background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, F
             </ul>
             
           </div>
+          {% if user.is_authenticated %}
+          <p class="btn btn-light" style="background-color: rgb(85, 159, 159); margin-top:10px; color:white">{{user.username}}</p>
+          {% endif %}
           <div>
-            <ul>
+
+            <ul >
               {% if user.is_authenticated %}
-              <a class="botones" href="{% url 'logout' %}">Cerrar sesión</a>
+              <a class="botones btn btn-secondary" style="padding:1px;" href="{% url 'logout' %}">Cerrar sesión</a>
               {% else %}
-              <a class="botones" href="{% url 'login' %}">Iniciar sesión</a>
+              <a class="botones btn btn-secondary" style="padding:1px;" href="{% url 'login' %}">Iniciar sesión</a>
               <br>
-              <a class="botones" href="{% url 'apps.usuarios:registrar' %}">Registrarse</a>
+              <a class="botones btn btn-secondary" style="padding:1px; margin-top:3px;" href="{% url 'apps.usuarios:registrar' %}">Registrarse</a>
               {% endif %}
             </ul>
           </div>
@@ -196,14 +200,14 @@ background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, F
           {% if user.is_authenticated %}
             {% if user.imagen %}
               <a href="{% url 'apps.usuarios:perfil' %}">
-                <img src="{{ user.imagen.url }}" alt="Profile picture" width="60" height="60" style="margin-right:10px;">
+                <img src="{{ user.imagen.url }}" alt="Profile picture" width="60" height="60" style="margin-right:10px; border-radius:12px;">
               </a>
             {% else %}
-              <img src="{% static 'user-default.jpg' %}" alt="Default profile picture" width="60" height="60" style="margin-right:10px;">
+              <img src="{% static 'user-default.jpg' %}" alt="Default profile picture" width="60" height="60" style="margin-right:10px; border-radius:12px;">
             {% endif %}
           {% else %}
             <a href="{% url 'login' %}">
-              <img src="{% static 'user-default.jpg' %}" alt="Default profile picture" width="60" height="60" style="margin-right:10px;">
+              <img src="{% static 'user-default.jpg' %}" alt="Default profile picture" width="60" height="60" style="margin-right:10px; border-radius:12px;">
             </a>
           {% endif %}
         </div>
