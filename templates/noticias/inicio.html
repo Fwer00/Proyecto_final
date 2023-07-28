@@ -5,7 +5,7 @@
     <nav class="navbar navbar-expand-md bg-black">
       <div>
         <div>
-          <h4 align="left" class="container text-white text-shadow-1" style=" font-family: 'StrongSword_New';" >CATEGORIAS</h4>
+          <div align="left" class="container text-white text-shadow-1" style=" font-family: 'StrongSword_New';">CATEGORIAS</div>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mt-1; col-12 col-lg-auto" style="transform: translateX(10%)" >
               <li class="nav-item mb-3 mb-lg-0 me-lg-3" style="background-color: rgba(45, 45, 45, 0.25); border-radius: 8px;"><a href="{% url 'noticias:inicio' %}" class="nav-link active text-light" aria-current="page" > Todas</a></li>
@@ -19,11 +19,7 @@
             {% endif %}
             </ul> 
 
-            <form class="d-flex; navbar-nav me-auto mb-2 mt-1 mb-lg-0 me-lg-3" method=POST action="{% url 'noticias:busqueda' %}" style="position: absolute; right: 0;">
-              {% csrf_token %}
-              <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search" name="busquedaa">
-              <button class="btn btn-outline-secondary" type="submit">Buscar</button>
-            </form>
+            
         
           </div>
         </div>
