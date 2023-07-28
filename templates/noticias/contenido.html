@@ -70,7 +70,7 @@
                         {% if perms.is_superuser or perms.noticias.change_comentario and perms.noticias.delete_comentario %}
                           <tr>
                             <!-- Formulario para eliminar un registro desde la misma tabla HTML -->                        
-                            <form method="POST" action="{% url 'noticias:eliminar' %}">
+                            <form method="POST" action="{% url 'noticias:eliminar' id=com.id %}">
                               {% csrf_token %}
                               <div class="btn-group d-flex ">
                                 <a href="{% url 'noticias:editar' com.pk %}" type="button" class="btn btn-secondary"> Editar </a>

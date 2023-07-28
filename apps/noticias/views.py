@@ -59,10 +59,9 @@ class Editar_ComentarioView(UpdateView):
 
 
     
-def Eliminar_Comentario(request):
-    user = request.user
-    noti = request.POST.get('noticia_id', None)
-    Comentario.objects.filter(usuario_id=user).delete()
+def Eliminar_Comentario(request, id):
+    comment = Comentario.objects.get(id=id)
+    comment.delete()
     return redirect(reverse_lazy('noticias:inicio'))
 
 def Comentar_Noticia(request):
