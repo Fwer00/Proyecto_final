@@ -1,39 +1,51 @@
 {% extends 'base.html'%}
 {% block titulo %} Home {% endblock titulo %}
 
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Marcellus&display=swap');
+
+  #holacolor {
+    background-attachment: fixed;
+    display:flex;
+  }
+
+</style>
+
+
 {% block content%}
-    <nav class="navbar navbar-expand-md bg-black">
+    <nav class="navbar navbar-expand-md" style="border-bottom-left-radius: 50px; border-bottom-right-radius: 50px; background-color: rgb(36, 36, 36);">
       <div>
+
         <div>
-          <h4 align="left" class="container text-white text-shadow-1" style=" font-family: 'StrongSword_New';" >CATEGORIAS</h4>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <center>
+
+          <div style="font-family: 'Marcellus', serif; font-size:40px; color:rgb(255, 255, 255); background-color:rgb(36, 36, 36); border-radius: 30px; margin-left:110%; margin-bottom:20px;">CATEGORIAS</div>
+          </center>
+       
             <ul class="navbar-nav me-auto mb-2 mt-1; col-12 col-lg-auto" style="transform: translateX(10%)" >
-              <li class="nav-item mb-3 mb-lg-0 me-lg-3" style="background-color: rgba(45, 45, 45, 0.25); border-radius: 8px;"><a href="{% url 'noticias:inicio' %}" class="nav-link active text-light" aria-current="page" > Todas</a></li>
+              
+              <li class="nav-item mb-3 mb-lg-0 me-lg-3 btn btn-light" style="font-family: 'Marcellus', serif; background-color: rgba(0, 0, 0); border-radius: 3px; width:85px; position: relative; left: 520px; font-size: 20px;"><a href="{% url 'noticias:inicio' %}" class="nav-link active text-light" aria-current="page">Todas</a></li>
               {% for c in categorias %}
-                <li class="nav-item mb-3 mb-lg-0 me-lg-3" style="background-color: rgba(45, 45, 45, 0.25); border-radius: 8px;"><a href="?id={{c.pk}}" class="nav-link active text-light" aria-current="page" >{{c.nombre}}</a></li>
+                <li class="nav-item mb-3 mb-lg-0 me-lg-3 btn btn-light" style="font-family: 'Marcellus', serif; background-color: rgba(0, 0, 0); border-radius: 8px; right: 150px; position: relative; left: 520px; font-size: 20px;"><a href="?id={{c.pk}}" class="nav-link active text-light" aria-current="page" >{{c.nombre}}</a></li>
               {% endfor %}
               {% if perms.is_superuser or perms.noticias.add_categoria  %}
-              <div align="center" class="container" class="btn_crear">
-                <a href="admin/noticias/categoria/add/" type="button" class="btn text-white rounded-pill">+</a>
-              </div>
-            {% endif %}
+                <a href="admin/noticias/categoria/add/" type="button" class="btn text-white btn-danger">+</a>
+              {% endif %}
+
             </ul> 
 
-            <form class="d-flex; navbar-nav me-auto mb-2 mt-1 mb-lg-0 me-lg-3" method=POST action="{% url 'noticias:busqueda' %}" style="position: absolute; right: 0;">
-              {% csrf_token %}
-              <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search" name="busquedaa">
-              <button class="btn btn-outline-secondary" type="submit">Buscar</button>
-            </form>
+
         
-          </div>
+          
         </div>
       </div>
+
     </nav>
     
     {% for noticia in noticias %}
       
-      <div  class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary" style="background-repeat: no-repeat; background-image: url('{{ noticia.imagen.url }}'); background-attachment: fixed; background-size: 100% 100%; border-radius: 8px;" >
-        <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1" style="background-color: rgba(0, 0, 0, 0.25); border-radius: 8px;">
+<div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary" style="background-repeat: no-repeat; background-image: url('{{ noticia.imagen.url }}'); background-size: cover; background-position: center; height: 400px; width:1500px; margin-left:6%; margin-top:2%;">
+  <div class="d-flex flex-column justify-content-center align-items-center h-100 p-5 pb-3 text-white text-shadow-1" style="background-color: rgba(0, 0, 0, 0.25); border-radius: 50px;">
           <div class="col-lg-6 px-0">
             
             <h1 class="display-4 fst-italic" style="text-shadow: 2px 2px 4px #686868; color: rgb(255, 255, 255);">{{ noticia.titulo }}</h1>
@@ -42,11 +54,11 @@
             <ul class="d-flex list-unstyled mt-auto">
               <li class="d-flex align-items-center me-3">
                 <svg class="lead my-3" width="1em" height="1em"><use xlink:href="#geo-fill"></use></svg>
-                <small style="text-shadow: 2px 2px 4px #686868;color: rgb(255, 255, 255);">{{noticia.categoria_noticia}}</small>
+                <small style="text-shadow: 2px 2px 4px #686868;color: rgb(255, 255, 255); background-color: rgb(86, 86, 86); border-radius: 8px; padding:3px;">{{noticia.categoria_noticia}}</small>
               </li>
               <li class="d-flex align-items-center">
                 <svg class="lead my-3" width="1em" height="1em"><use xlink:href="#calendar3"></use></svg>
-                <small style="text-shadow: 2px 2px 4px #686868;color: rgb(255, 255, 255);">{{noticia.fecha}}</small>
+                <small style="text-shadow: 2px 2px 4px #686868;color: rgb(255, 255, 255); background-color: rgb(86, 86, 86); padding:3px; border-radius: 8px;">{{noticia.fecha}}</small>
               </li>
             </ul>
           </div>
@@ -57,7 +69,7 @@
 
     {% if perms.is_superuser or perms.noticias.add_noticia  %}
       <div align="center" class="container" class="btn_crear mb-3">
-        <a href="admin/noticias/noticia/add/" type="button" class="btn btn-primary">Agregar noticia</a>
+        <a href="admin/noticias/noticia/add/" type="button" class="btn btn-danger">Agregar noticia</a>
       </div>
     {% endif %}
     <br></br><br></br><br></br>
