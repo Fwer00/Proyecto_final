@@ -1,5 +1,7 @@
 {% extends 'base.html'%}
 
+{% load static %}
+
 {% block title %} Home {% endblock  %}
 
 {% block content %}
@@ -15,6 +17,51 @@
     border-bottom-right-radius: 12px; 
     border: 2px solid #000000
       }
+
+  #carouselExampleCaptions {
+    width:1000px;
+    margin: 100px;
+  }
+
+  .carousel-control-prev {
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+  }
+  .carousel-control-next {
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+  }
+  
+
+
+  .carousel-control-prev,
+  .carousel-control-next {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 160px;
+  }
+
+
+  .carousel-caption h3,
+  .carousel-caption p {
+    background-color: rgb(0, 0, 0);
+    color: #ffffff;
+    display: inline-block;
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  #clases {
+    position:absolute;
+    left:1220px;
+    top: 430px;
+  }
+
+  #map {
+    position:absolute;
+    left:1220px;
+    top: 680px;
+  }
+
 </style>
 
 
@@ -31,7 +78,49 @@
       </div>
     </div>
   </div>
-  <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br>
+
+<div style="background-color: rgb(36, 36, 36); border-radius:25px;">
+  <h2 style="margin-top:30px; margin-left:225px; padding:20px; color:white;">Bienvenido a <b>JUGADORES DEL DESIERTO</b>, blog dedicado al juego black desert online.</h2>
+</div>
+
+
+<div id="carouselExampleCaptions" class="carousel slide border" data-bs-ride="carousel" style="margin-bottom: 50px; margin-top:50px; border: 2px solid-black;">
+  <div class="carousel-indicators">
+    {% for noticia in ultimas_noticias %}
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active" aria-current="true"{% endif %} aria-label="Slide {{ forloop.counter }}" style="height:10px; background-color:rgb(0, 0, 0);"></button>
+    {% endfor %}
+  </div>
+  <div class="carousel-inner">
+    {% for noticia in ultimas_noticias %}
+      <div class="carousel-item {% if forloop.first %}active{% endif %}" style="color: #000000;">
+        <a href="{{ noticia.get_absolute_url }}">
+          <img src="{{ noticia.imagen.url }}" class="d-block mx-auto" style="width:1000px; height:500px;" alt="...">
+        </a>
+        <div class="carousel-caption d-none d-md-block">
+          <a href="{{ noticia.get_absolute_url }}"><h3 style="font-size:30px; background-color:rgb(36, 36, 36);">{{ noticia.titulo }}</h3><br></a>
+          <a href="{{ noticia.get_absolute_url }}"><p style="background-color: rgb(36, 36, 36);">{{ noticia.resumen }}</p></a>
+        </div>
+      </div>
+    {% endfor %}
+    
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<div id="clases">
+  <a href="#"><img src="{% static 'clases.jpg' %}" style="width:400px; height:180px; border-radius: 40px;"></a>
+</div>
+<div id="map">
+  <a href="#"><img src="{% static 'map.jpg' %}" style="width:400px; height:180px; border-radius: 40px;"></a>
+</div>
+  
+
   
 
 {% endblock %}

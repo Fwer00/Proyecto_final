@@ -29,6 +29,9 @@ class Noticia(models.Model):
     def delete(self, using = None, keep_parents = False):
         self.imagen.delete(self.imagen.name)
         super().delete()
+    
+    def get_absolute_url(self):
+        return reverse('noticias:contenido', args=[str(self.id)])
 
 
 class Comentario(models.Model):

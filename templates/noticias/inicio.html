@@ -28,9 +28,11 @@
               {% for c in categorias %}
                 <li class="nav-item mb-3 mb-lg-0 me-lg-3 btn btn-light" style="font-family: 'Marcellus', serif; background-color: rgba(0, 0, 0); border-radius: 8px; right: 150px; position: relative; left: 520px; font-size: 20px;"><a href="?id={{c.pk}}" class="nav-link active text-light" aria-current="page" >{{c.nombre}}</a></li>
               {% endfor %}
-              {% if perms.is_superuser or perms.noticias.add_categoria  %}
+              <!-- por si hace falta agregar categorias desde el inicio
+                {% if perms.is_superuser or perms.noticias.add_categoria  %}
                 <a href="admin/noticias/categoria/add/" type="button" class="btn text-white btn-danger">+</a>
               {% endif %}
+              -->
 
             </ul> 
 
@@ -69,7 +71,7 @@
 
     {% if perms.is_superuser or perms.noticias.add_noticia  %}
       <div align="center" class="container" class="btn_crear mb-3">
-        <a href="admin/noticias/noticia/add/" type="button" class="btn btn-danger">Agregar noticia</a>
+        <a href="admin/noticias/noticia/add/" type="button" class="btn btn-danger" style="margin-top:10px;">Agregar noticia</a>
       </div>
     {% endif %}
     <br></br><br></br><br></br>

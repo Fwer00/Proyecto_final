@@ -51,6 +51,10 @@ class Editar_ComentarioView(UpdateView):
     form_class = ComentarioForm
     template_name = 'noticias/edicion.html'
 
+    def get_success_url(self):
+        comentario = self.object
+        url_noticia = comentario.noticia.get_absolute_url()
+        return url_noticia
 
 
 
@@ -59,10 +63,19 @@ class Editar_ComentarioView(UpdateView):
 
 
     
+#def Eliminar_Comentario(request, id):
+#    comment = Comentario.objects.get(id=id)
+#    comment.delete()
+#    return redirect(reverse_lazy('noticias:inicio'))
+
 def Eliminar_Comentario(request, id):
-    comment = Comentario.objects.get(id=id)
+    comment = get_object_or_404(Comentario, id=id)
+    noticia_id = comment.noticia.id  # Obtener el id de la noticia relacionada al comentario
     comment.delete()
-    return redirect(reverse_lazy('noticias:inicio'))
+
+    redirect_url = f'/noticias/{noticia_id}/'
+    
+    return redirect(redirect_url)
 
 def Comentar_Noticia(request):
     comentario = request.POST.get('comentario', None)
