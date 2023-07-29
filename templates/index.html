@@ -21,7 +21,7 @@
   #carouselExampleCaptions {
     width:900px;
     left:710px;
-    top:75px;
+    top:65px;
   }
 
   .carousel-control-prev {
@@ -53,19 +53,28 @@
 
   #clases {
     position:relative;
-    bottom:572px;
-    left:105px;
+    bottom:100px;
+    left:117px;
   }
 
   #map {
     position: relative;
-    bottom:345px;
-    right:350px;
+    margin-top:280px;
+    right:338px;
+    margin-bottom:30px;
   }
 
   #enlinea {
-    position: relative;
-    bottom:556px;
+    position: absolute;
+    bottom:265px;
+    font-size: 20px;
+    left:30px;
+
+  }
+
+  #enlinea2 {
+    position: absolute;
+    bottom:1px;
     font-size: 20px;
     left:30px;
 
@@ -87,8 +96,8 @@
 .clases::after{
   content: "CLASES";
   position: absolute;
-  top:1123px;
-  right:1637px;
+  bottom:154px;
+  right:1627px;
   transform: translate(10px, -50%);
   font-size: 25px;
   writing-mode: vertical-lr;
@@ -100,8 +109,21 @@
 .mapa::after{
   content: "MAPA";
   position: absolute;
-  top:1350px;
-  right:1637px;
+  top:380px;
+  right:1627px;
+  transform: translate(10px, -50%);
+  font-size: 25px;
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+  background-color: rgb(125, 125, 125);
+  border-radius: 15px;
+}
+
+.requisitos::after {
+  content: "REQUISITOS";
+  position: absolute;
+  top:-217px;
+  right:123px;
   transform: translate(10px, -50%);
   font-size: 25px;
   writing-mode: vertical-lr;
@@ -165,18 +187,21 @@
 
 </div>
 
-
+<div style="position:relative">
 <p class="border border-light" id="enlinea" style="padding:7px; border-radius:15px; color:rgb(255, 255, 255); width:600px; background-color:rgb(36, 36, 36)">Black Desert Online (BDO) es un MMORPG sandbox, de mundo abierto, lleno de acción y espectaculares gráficos de nueva generación. Ha sido desarrollado con el motor gráfico que Pearl Abyss desarrolló exclusivamente para él. BDO tiene lugar en un mundo de fantasía y su historia se desenvuelve entre el conflicto de dos grandes naciones rivales, la República de Calpheon y el Reino de Valencia. El juego cuenta con un extenso mundo para explorar que actualmente consta de varias regiones: Calpheon, Mediah, Valencia, Serendia, Balenos, Kamasilvia, entre otras.</p>
-<p class="border border-light" id="enlinea" style="padding:7px; border-radius:15px; color:rgb(255, 255, 255); width:600px; background-color:rgb(36, 36, 36)">BDO da a los jugadores un control total sobre sus personajes, ya que su sistema de combate se centra en la habilidad del jugador para ejecutar los diferentes combos. Serán los propios jugadores los que tengan que apuntar, esquivar y ejecutar cada combo de forma manual. BDO también les permitirá llegar a cualquier lugar con sus controles de movimiento, con el que podrán escalar paredes, edificios, explorar ciudades e interactuar con casas, árboles y diversos obstáculos.</p>
+<p class="border border-light" id="enlinea2" style="padding:7px; border-radius:15px; color:rgb(255, 255, 255); width:600px; background-color:rgb(36, 36, 36)">BDO da a los jugadores un control total sobre sus personajes, ya que su sistema de combate se centra en la habilidad del jugador para ejecutar los diferentes combos. Serán los propios jugadores los que tengan que apuntar, esquivar y ejecutar cada combo de forma manual. BDO también les permitirá llegar a cualquier lugar con sus controles de movimiento, con el que podrán escalar paredes, edificios, explorar ciudades e interactuar con casas, árboles y diversos obstáculos.</p>
+</div>
 
-<div>
+
+<div style="position: relative;">
   <a href="{% url 'personajes' %}"><img id="clases" class="border border-light" src="{% static 'clases.jpg' %}" style="width:450px; height:200px; border-radius: 40px;"></a>
   <span class="clases"></span>
   <a href="{% url 'mapa' %}"><img id="map" class="border border-light" src="{% static 'map.jpg' %}" style="width:450px; height:200px; border-radius: 40px;"></a>
-  <span class="mapa"></span>
-
-  <img src="{% static 'requisitos.jpg' %}" style="position:relative; bottom:400px; right:160px; width:800px; height:350px; border-radius:15px;">
-
+  <span class="mapa"></span>   
+</div>
+<div style="position:relative">
+  <img src="{% static 'requisitos.jpg' %}" style="position:absolute; bottom:45px; right:160px; width:800px; height:350px; border-radius:15px;">
+  <span class="requisitos"></span>
 </div>
 
   
