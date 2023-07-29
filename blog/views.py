@@ -95,3 +95,6 @@ def maegu(request):
 def mapa(request):
     return render(request, 'mapa\mapa_interactivo.html')
 
+def nosotros(request):
+    return render(request, 'nosotros/Casa.html')
+
