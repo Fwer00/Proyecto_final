@@ -1,11 +1,11 @@
 from django.shortcuts import render, HttpResponse, redirect
 from .models import Noticia, Categoria, Comentario
 from django.views.generic.edit import UpdateView
-from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic.base import View
-from django.shortcuts import get_object_or_404
 from .forms import ComentarioForm
+from django.contrib.auth.decorators import login_required
+
 
 
 class Inicio(View):
@@ -72,9 +72,6 @@ class Editar_ComentarioView(UpdateView):
 
 
 
-
-
-
     
 #def Eliminar_Comentario(request, id):
 #    comment = Comentario.objects.get(id=id)
@@ -90,6 +87,7 @@ def Eliminar_Comentario(request, id):
     
     return redirect(redirect_url)
 
+@login_required
 def Comentar_Noticia(request):
     comentario = request.POST.get('comentario', None)
     user = request.user
@@ -111,3 +109,11 @@ def busqueda(request):
                                                  'resultados': resultados})
     else:
         return render(request, 'busqueda.html', {})
+    
+
+
+    #porsiacaso
+    #def Eliminar_Comentario(request, id):
+    #   com = Comentario.objects.filter(id=id)
+    #   com.delete()
+    #   return redirect(reverse_lazy('noticias:inicio'))

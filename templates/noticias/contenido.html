@@ -79,7 +79,8 @@
                             </div>
                           </div>
                         </div>
-                        {% if perms.is_superuser or perms.noticias.change_comentario and perms.noticias.delete_comentario %}
+                        {% if not perms.is_superuser and perms.noticias.change_comentario and perms.noticias.delete_comentario and user == com.usuario %}
+                          
                           <tr>
                             <!-- Formulario para eliminar un registro desde la misma tabla HTML -->                        
                             <form method="POST" action="{% url 'noticias:eliminar' id=com.id %}">
@@ -95,6 +96,26 @@
                             </form>
                           </tr>
                           <br></br> 
+                        
+                        {% endif %}
+                        {% if perms.is_superuser or perms.noticias.change_comentario and perms.noticias.delete_comentario and perms.noticias.add_noticia %}
+                          
+                          <tr>
+                            <!-- Formulario para eliminar un registro desde la misma tabla HTML -->                        
+                            <form method="POST" action="{% url 'noticias:eliminar' id=com.id %}">
+                              {% csrf_token %}
+                              <div class="btn-group d-flex ">
+                                <a href="{% url 'noticias:editar' com.pk %}" type="button" class="btn btn-secondary"> Editar </a>
+                                <input class="btn btn-dark" onclick='return Borrar()' type="submit" value="Eliminar" ></input>
+                                <script>
+                                  function Borrar()
+                                  {if(confirm('¿Estas seguro que deseas borrar este Comentario? Volveras al inicio de noticias.')){return true;}else{return false;}}
+                                  </script>
+                              </div>
+                            </form>
+                          </tr>
+                          <br></br> 
+                        
                         {% endif %}
                         
 
