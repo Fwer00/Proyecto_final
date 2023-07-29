@@ -19,8 +19,9 @@
       }
 
   #carouselExampleCaptions {
-    width:1000px;
-    margin: 100px;
+    width:900px;
+    left:710px;
+    top:75px;
   }
 
   .carousel-control-prev {
@@ -51,11 +52,15 @@
   }
 
   #clases {
-    
+    position:relative;
+    bottom:500px;
+    left:105px;
   }
 
   #map {
-
+    position: relative;
+    bottom:270px;
+    right:350px;
   }
 
   .vertical-text{
@@ -81,11 +86,12 @@
     background-color: rgb(218, 218, 218);
     border-radius: 15px;
   }
-  
-  #carouselExampleCaptions{
+  #enlinea {
+    position: relative;
+    bottom:556px;
+    font-size: 20px;
+    left:30px;
 
-    bottom:1300px;
-    left:540px;
   }
 
 
@@ -108,19 +114,11 @@
   
 <h1 class="border border-light" style="border-radius:15px; padding:10px; padding-left: 75px; margin-top:10px; color:rgb(255, 255, 255); background-color:rgb(24, 24, 24); margin-right:500px;margin-left:300px;">Bienvenido a <b>JUGADORES DEL DESIERTO!</b></h1>
 <h3 class="border border-light" style="border-radius:15px; padding:10px; padding-left: 83px; margin-top:10px; color:rgb(255, 255, 255); background-color:rgb(24, 24, 24); margin-right:300px; margin-left:700px;">Un blog dedicado a <u>BLACK DESERT ONLINE</u></h3>
-<div>
-  <h4 class="border border-light" style="border-radius:15px; padding:10px; color:rgb(255, 255, 255); width:600px; margin-left:20px; background-color:rgb(36, 36, 36)">Black Desert Online (BDO) es un MMORPG sandbox, de mundo abierto, lleno de acción y espectaculares gráficos de nueva generación. Ha sido desarrollado con el motor gráfico que Pearl Abyss desarrolló exclusivamente para él. BDO tiene lugar en un mundo de fantasía y su historia se desenvuelve entre el conflicto de dos grandes naciones rivales, la República de Calpheon y el Reino de Valencia. El juego cuenta con un extenso mundo para explorar que actualmente consta de varias regiones: Calpheon, Mediah, Valencia, Serendia, Balenos, Kamasilvia, entre otras.</h4>
-  <h4 class="border border-light" style="border-radius:15px; padding:10px; margin-top:15px; color:rgb(255, 255, 255); width:600px; margin-left:20px; background-color:rgb(36, 36, 36)">BDO da a los jugadores un control total sobre sus personajes, ya que su sistema de combate se centra en la habilidad del jugador para ejecutar los diferentes combos. Serán los propios jugadores los que tengan que apuntar, esquivar y ejecutar cada combo de forma manual. BDO también os permitirá llegar a cualquier lugar con sus controles de movimiento, con el que podréis escalar paredes, edificios, explorar ciudades e interactuar con casas, árboles y diversos obstáculos.</h4>
-  <p class="vertical-text" id="noti">NOTICIAS</p>
-  <p class="vertical-text" id="cla">CLASES</p>
-  <p class="vertical-text" id="mp">MAPA</p>
-
-  <a href="{% url 'personajes' %}"><img id="clases" class="border border-light" src="{% static 'clases.jpg' %}" style="width:400px; height:180px; border-radius: 40px;"></a>
-  <a href="{% url 'mapa' %}"><img id="map" class="border border-light" src="{% static 'map.jpg' %}" style="width:400px; height:180px; border-radius: 40px;"></a>
-</div>
 
 
-<div id="carouselExampleCaptions" class="carousel slide border border-light"  data-bs-ride="carousel">
+
+
+<div id="carouselExampleCaptions" class="carousel slide" style="display:inline-block;" data-bs-ride="carousel">
   <div class="carousel-indicators">
     {% for noticia in ultimas_noticias %}
       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active" aria-current="true"{% endif %} aria-label="Slide {{ forloop.counter }}" style="height:10px; background-color:rgb(0, 0, 0);"></button>
@@ -130,7 +128,7 @@
     {% for noticia in ultimas_noticias %}
       <div class="carousel-item {% if forloop.first %}active{% endif %}" style="color: #000000;">
         <a href="{{ noticia.get_absolute_url }}">
-          <img src="{{ noticia.imagen.url }}" class="d-block mx-auto" style="width:1000px; height:650px;" alt="...">
+          <img src="{{ noticia.imagen.url }}" class="d-block mx-auto" style="width:900px; height:550px;" alt="...">
         </a>
         <div class="carousel-caption d-none d-md-block">
           <a href="{{ noticia.get_absolute_url }}"><h3 style="font-size:30px; background-color:rgb(36, 36, 36);">{{ noticia.titulo }}</h3><br></a>
@@ -148,9 +146,16 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
-  
+
 </div>
 
+
+<p class="border border-light" id="enlinea" style="padding:7px; border-radius:15px; color:rgb(255, 255, 255); width:600px; background-color:rgb(36, 36, 36)">Black Desert Online (BDO) es un MMORPG sandbox, de mundo abierto, lleno de acción y espectaculares gráficos de nueva generación. Ha sido desarrollado con el motor gráfico que Pearl Abyss desarrolló exclusivamente para él. BDO tiene lugar en un mundo de fantasía y su historia se desenvuelve entre el conflicto de dos grandes naciones rivales, la República de Calpheon y el Reino de Valencia. El juego cuenta con un extenso mundo para explorar que actualmente consta de varias regiones: Calpheon, Mediah, Valencia, Serendia, Balenos, Kamasilvia, entre otras.</p>
+<p class="border border-light" id="enlinea" style="padding:7px; border-radius:15px; color:rgb(255, 255, 255); width:600px; background-color:rgb(36, 36, 36)">BDO da a los jugadores un control total sobre sus personajes, ya que su sistema de combate se centra en la habilidad del jugador para ejecutar los diferentes combos. Serán los propios jugadores los que tengan que apuntar, esquivar y ejecutar cada combo de forma manual. BDO también os permitirá llegar a cualquier lugar con sus controles de movimiento, con el que podréis escalar paredes, edificios, explorar ciudades e interactuar con casas, árboles y diversos obstáculos.</p>
+
+
+<a href="{% url 'personajes' %}"><img id="clases" class="border border-light" src="{% static 'clases.jpg' %}" style="width:450px; height:200px; border-radius: 40px;"></a>
+<a href="{% url 'mapa' %}"><img id="map" class="border border-light" src="{% static 'map.jpg' %}" style="width:450px; height:200px; border-radius: 40px;"></a>
 
 
   
