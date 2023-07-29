@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.views.generic.base import View
 from .forms import ComentarioForm
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404
 
 
 
@@ -72,7 +73,6 @@ class Editar_ComentarioView(UpdateView):
 
 
 
-    
 #def Eliminar_Comentario(request, id):
 #    comment = Comentario.objects.get(id=id)
 #    comment.delete()
