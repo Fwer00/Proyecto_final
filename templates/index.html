@@ -79,9 +79,6 @@
     </div>
   </div>
 
-<div style="background-color: rgb(36, 36, 36); border-radius:25px;">
-  <h2 style="margin-top:30px; margin-left:225px; padding:20px; color:white;">Bienvenido a <b>JUGADORES DEL DESIERTO</b>, blog dedicado al juego black desert online.</h2>
-</div>
 
 
 <div id="carouselExampleCaptions" class="carousel slide border" data-bs-ride="carousel" style="margin-bottom: 50px; margin-top:50px; border: 2px solid-black;">
@@ -114,10 +111,10 @@
   </button>
 </div>
 <div id="clases">
-  <a href="#"><img src="{% static 'clases.jpg' %}" style="width:400px; height:180px; border-radius: 40px;"></a>
+  <a href="{% url 'personajes' %}"><img class="border border-light" src="{% static 'clases.jpg' %}" style="width:400px; height:180px; border-radius: 40px;"></a>
 </div>
 <div id="map">
-  <a href="#"><img src="{% static 'map.jpg' %}" style="width:400px; height:180px; border-radius: 40px;"></a>
+  <a href="{% url 'mapa' %}"><img class="border border-light" src="{% static 'map.jpg' %}" style="width:400px; height:180px; border-radius: 40px;"></a>
 </div>
   
 
