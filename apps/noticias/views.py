@@ -71,7 +71,11 @@ class Editar_ComentarioView(UpdateView):
         return url_noticia
 
 
-
+#porsiacaso
+#def Eliminar_Comentario(request, id):
+#   com = Comentario.objects.filter(id=id)
+#   com.delete()
+#   return redirect(reverse_lazy('noticias:inicio'))
 
 #def Eliminar_Comentario(request, id):
 #    comment = Comentario.objects.get(id=id)
@@ -112,8 +116,3 @@ def busqueda(request):
     
 
 
-    #porsiacaso
-    #def Eliminar_Comentario(request, id):
-    #   com = Comentario.objects.filter(id=id)
-    #   com.delete()
-    #   return redirect(reverse_lazy('noticias:inicio'))
