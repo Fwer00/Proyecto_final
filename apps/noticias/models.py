@@ -20,8 +20,8 @@ class Noticia(models.Model):
     imagen = models.ImageField(upload_to='noticias', null=True)
     categoria_noticia = models.ForeignKey(Categoria, on_delete=models.PROTECT, default=1)
 
-    class Meta:
-        ordering = ('-fecha',)
+    #class Meta:
+    #   ordering = ('-fecha',)
 
     def __str__(self) -> str:
         return self.titulo
@@ -29,6 +29,9 @@ class Noticia(models.Model):
     def delete(self, using = None, keep_parents = False):
         self.imagen.delete(self.imagen.name)
         super().delete()
+    
+    def get_absolute_url(self):
+        return reverse('noticias:contenido', args=[str(self.id)])
 
 
 class Comentario(models.Model):

@@ -1,5 +1,5 @@
 {% extends 'base.html'%}
-{% block titulo %} Home {% endblock titulo %}
+{% block title %} Todas las noticias {% endblock %}
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Marcellus&display=swap');
@@ -11,6 +11,17 @@
 
 </style>
 
+{% block buscador %}
+<li style="padding-left: 30px; position:absolute; left:850px; top:30px;">
+  <div style="background-color: rgb(36, 36, 36); padding: 7px; border-radius: 15px; padding-left: 47px;">
+    <form class="d-flex; navbar-nav" style="padding-right:15%;" method=POST action="{% url 'noticias:busqueda' %}">
+      {% csrf_token %}
+      <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search" name="busquedaa">
+      <button class="btn btn-outline-light" type="submit">Buscar</button>
+    </form>
+  </div>
+</li>
+{% endblock %}
 
 {% block content%}
     <nav class="navbar navbar-expand-md" style="border-bottom-left-radius: 50px; border-bottom-right-radius: 50px; background-color: rgb(36, 36, 36);">
@@ -28,19 +39,30 @@
               {% for c in categorias %}
                 <li class="nav-item mb-3 mb-lg-0 me-lg-3 btn btn-light" style="font-family: 'Marcellus', serif; background-color: rgba(0, 0, 0); border-radius: 8px; right: 150px; position: relative; left: 520px; font-size: 20px;"><a href="?id={{c.pk}}" class="nav-link active text-light" aria-current="page" >{{c.nombre}}</a></li>
               {% endfor %}
-              {% if perms.is_superuser or perms.noticias.add_categoria  %}
+              <!-- por si hace falta agregar categorias desde el inicio
+                {% if perms.is_superuser or perms.noticias.add_categoria  %}
                 <a href="admin/noticias/categoria/add/" type="button" class="btn text-white btn-danger">+</a>
               {% endif %}
+              -->
 
             </ul> 
-
-
-        
-          
+               
         </div>
       </div>
 
     </nav>
+
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="font-family: 'Marcellus', serif; background-color: rgba(0, 0, 0); border-radius: 3px; width:140px; position: relative; left: 100px; top: -70px; font-size: 20px;">
+        Ordenar por
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="font-family: 'Marcellus', serif; border-radius: 3px; width:140px; position: relative; left: 100px; top: -55px; font-size: 20px;">
+        <li><a class="dropdown-item" href="/noticias/{% for i in noticias %}?ATOZ={{i.id}} {% endfor %}">Nombre: A-Z</a></li>
+        <li><a class="dropdown-item" href="/noticias/{% for i in noticias %}?ZTOA={{i.id}} {% endfor %}">Nombre: Z-A</a></li>
+        <li><a class="dropdown-item" href="/noticias/{% for i in noticias %}?RTOA={{i.id}} {% endfor %}">Fecha: Recientes</a></li>
+        <li><a class="dropdown-item" href="/noticias/{% for i in noticias %}?ATOR={{i.id}} {% endfor %}">Nombre: Antiguos</a></li>
+      </ul>
+    </div>
     
     {% for noticia in noticias %}
       
@@ -69,7 +91,7 @@
 
     {% if perms.is_superuser or perms.noticias.add_noticia  %}
       <div align="center" class="container" class="btn_crear mb-3">
-        <a href="admin/noticias/noticia/add/" type="button" class="btn btn-danger">Agregar noticia</a>
+        <a href="admin/noticias/noticia/add/" type="button" class="btn btn-danger" style="margin-top:10px;">Agregar noticia</a>
       </div>
     {% endif %}
     <br></br><br></br><br></br>

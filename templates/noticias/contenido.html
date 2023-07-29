@@ -1,5 +1,17 @@
 {% extends 'base.html' %}
-{% block titulo%} Noticia {%endblock titulo%}
+{% block title %} Noticia {% endblock %}
+
+{% block buscador %}
+<li style="padding-left: 30px; position:absolute; left:850px; top:30px;">
+  <div style="background-color: rgb(36, 36, 36); padding: 7px; border-radius: 15px; padding-left: 47px;">
+    <form class="d-flex; navbar-nav" style="padding-right:15%;" method=POST action="{% url 'noticias:busqueda' %}">
+      {% csrf_token %}
+      <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search" name="busquedaa">
+      <button class="btn btn-outline-light" type="submit">Buscar</button>
+    </form>
+  </div>
+</li>
+{% endblock %}
 
 {% block content%}
     <div class="container mt-5">
@@ -67,7 +79,27 @@
                             </div>
                           </div>
                         </div>
-                        {% if perms.is_superuser or perms.noticias.change_comentario and perms.noticias.delete_comentario %}
+                        {% if not perms.is_superuser and perms.noticias.change_comentario and perms.noticias.delete_comentario and user == com.usuario %}
+                          
+                          <tr>
+                            <!-- Formulario para eliminar un registro desde la misma tabla HTML -->                        
+                            <form method="POST" action="{% url 'noticias:eliminar' id=com.id %}">
+                              {% csrf_token %}
+                              <div class="btn-group d-flex ">
+                                <a href="{% url 'noticias:editar' com.pk %}" type="button" class="btn btn-secondary"> Editar </a>
+                                <input class="btn btn-dark" onclick='return Borrar()' type="submit" value="Eliminar" ></input>
+                                <script>
+                                  function Borrar()
+                                  {if(confirm('¿Estas seguro que deseas borrar este Comentario?')){return true;}else{return false;}}
+                                  </script>
+                              </div>
+                            </form>
+                          </tr>
+                          <br></br> 
+                        
+                        {% endif %}
+                        {% if perms.is_superuser or perms.noticias.change_comentario and perms.noticias.delete_comentario and perms.noticias.add_noticia %}
+                          
                           <tr>
                             <!-- Formulario para eliminar un registro desde la misma tabla HTML -->                        
                             <form method="POST" action="{% url 'noticias:eliminar' id=com.id %}">
@@ -83,6 +115,7 @@
                             </form>
                           </tr>
                           <br></br> 
+                        
                         {% endif %}
                         
 

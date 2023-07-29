@@ -6,6 +6,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="icon" href="{% static 'icono.png' %}" style="border-radius:35px;">
   <title>
 
     {% block title %}
@@ -127,12 +129,13 @@
     background-color: gray !important;
     border-color:black !important;
   }
+
   </style>
 </head>
 
-<body id="fondo" style="background: #bdc3c7;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+<body id="fondo" style="background: #000000;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to top, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to top, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 ">
   <header>
     <nav class="navbar navbar-expand-md bg-black">
@@ -169,15 +172,11 @@ background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, F
               <li class="nav-item">
                 <a class="nav-link active text-light" href="{%url 'contacto' %}">Contacto</a>
               </li>
-              <li style="padding-left: 30px;">
-                <div style="background-color: rgb(36, 36, 36); padding: 7px; border-radius: 15px; padding-left: 47px;">
-                  <form class="d-flex; navbar-nav" style="padding-right:15%;" method=POST action="{% url 'noticias:busqueda' %}">
-                    {% csrf_token %}
-                    <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search" name="busquedaa">
-                    <button class="btn btn-outline-light" type="submit">Buscar</button>
-                  </form>
-                </div>
-              </li>
+              {% block buscador %}
+
+
+
+              {% endblock %}
             </ul>
             
           </div>

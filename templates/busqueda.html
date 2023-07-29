@@ -1,16 +1,18 @@
 {% extends 'base.html' %}
 
+{% block title %} Busqueda {% endblock %}
+
 {% block content %}
     <center>
 
     {% if busquedaa %}
-        <h1>Resultados sobre {{busquedaa}} </h1>
+        <h1 style="color:white">Resultados sobre "{{busquedaa}}" </h1>
     </center>
         <br/>
         {% for noticias in resultados %}
-        <ul id="resultados-busqueda">
+        <ul style="color:white;" id="resultados-busqueda">
             <li>
-                <a href="{% url 'noticias:contenido' noticias.id %}">{{ noticias }}</a><br/>
+                <a class="btn btn-light" href="{% url 'noticias:contenido' noticias.id %}">{{ noticias }}</a><br/>
             </li>
         </ul>
         {% endfor %}

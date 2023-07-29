@@ -1,18 +1,32 @@
 from django.shortcuts import render, HttpResponse, redirect
 from .models import Noticia, Categoria, Comentario
 from django.views.generic.edit import UpdateView
-from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic.base import View
-from django.shortcuts import get_object_or_404
 from .forms import ComentarioForm
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404
+
 
 
 class Inicio(View):
     def get(self, request, *args, **kwargs):
         id_categoria = request.GET.get('id', None)
+        ATOZID = request.GET.get('ATOZ')
+        ZTOAID = request.GET.get('ZTOA')
+        RTOAID = request.GET.get('RTOA')
+        ATORID = request.GET.get('ATOR')
+        print(ATOZID)
         if id_categoria:
             n = Noticia.objects.filter(categoria_noticia=id_categoria)
+        elif ATOZID:
+            n = Noticia.objects.order_by('titulo')
+        elif ZTOAID:
+            n = Noticia.objects.order_by('-titulo')
+        elif RTOAID:
+            n = Noticia.objects.order_by('-fecha')
+        elif ATORID:
+            n = Noticia.objects.order_by('fecha')
         else:
             n = Noticia.objects.all() 
 
@@ -51,19 +65,33 @@ class Editar_ComentarioView(UpdateView):
     form_class = ComentarioForm
     template_name = 'noticias/edicion.html'
 
+    def get_success_url(self):
+        comentario = self.object
+        url_noticia = comentario.noticia.get_absolute_url()
+        return url_noticia
 
 
+#porsiacaso
+#def Eliminar_Comentario(request, id):
+#   com = Comentario.objects.filter(id=id)
+#   com.delete()
+#   return redirect(reverse_lazy('noticias:inicio'))
 
+#def Eliminar_Comentario(request, id):
+#    comment = Comentario.objects.get(id=id)
+#    comment.delete()
+#    return redirect(reverse_lazy('noticias:inicio'))
 
-
-
-
-    
 def Eliminar_Comentario(request, id):
-    comment = Comentario.objects.get(id=id)
+    comment = get_object_or_404(Comentario, id=id)
+    noticia_id = comment.noticia.id  # Obtener el id de la noticia relacionada al comentario
     comment.delete()
-    return redirect(reverse_lazy('noticias:inicio'))
 
+    redirect_url = f'/noticias/{noticia_id}/'
+    
+    return redirect(redirect_url)
+
+@login_required
 def Comentar_Noticia(request):
     comentario = request.POST.get('comentario', None)
     user = request.user
@@ -85,3 +113,6 @@ def busqueda(request):
                                                  'resultados': resultados})
     else:
         return render(request, 'busqueda.html', {})
+    
+
+

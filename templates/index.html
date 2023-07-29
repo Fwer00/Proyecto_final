@@ -1,5 +1,7 @@
 {% extends 'base.html'%}
 
+{% load static %}
+
 {% block title %} Home {% endblock  %}
 
 {% block content %}
@@ -15,6 +17,122 @@
     border-bottom-right-radius: 12px; 
     border: 2px solid #000000
       }
+
+  #carouselExampleCaptions {
+    width:900px;
+    left:710px;
+    top:65px;
+  }
+
+  .carousel-control-prev {
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+  }
+  .carousel-control-next {
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+  }
+  
+
+
+  .carousel-control-prev,
+  .carousel-control-next {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 160px;
+  }
+
+
+  .carousel-caption h3,
+  .carousel-caption p {
+    background-color: rgb(0, 0, 0);
+    color: #ffffff;
+    display: inline-block;
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  #clases {
+    position:relative;
+    bottom:100px;
+    left:117px;
+  }
+
+  #map {
+    position: relative;
+    margin-top:280px;
+    right:338px;
+    margin-bottom:30px;
+  }
+
+  #enlinea {
+    position: absolute;
+    bottom:265px;
+    font-size: 20px;
+    left:30px;
+
+  }
+
+  #enlinea2 {
+    position: absolute;
+    bottom:1px;
+    font-size: 20px;
+    left:30px;
+
+  }
+
+  .slide::after {
+  content: "NOTICIAS";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translate(10px, -50%);
+  font-size: 40px;
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+  background-color: rgb(125, 125, 125);
+  border-radius: 15px;
+}
+
+.clases::after{
+  content: "CLASES";
+  position: absolute;
+  bottom:154px;
+  right:1627px;
+  transform: translate(10px, -50%);
+  font-size: 25px;
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+  background-color: rgb(125, 125, 125);
+  border-radius: 15px;
+}
+
+.mapa::after{
+  content: "MAPA";
+  position: absolute;
+  top:380px;
+  right:1627px;
+  transform: translate(10px, -50%);
+  font-size: 25px;
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+  background-color: rgb(125, 125, 125);
+  border-radius: 15px;
+}
+
+.requisitos::after {
+  content: "REQUISITOS";
+  position: absolute;
+  top:-217px;
+  right:123px;
+  transform: translate(10px, -50%);
+  font-size: 25px;
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+  background-color: rgb(125, 125, 125);
+  border-radius: 15px;
+}
+
+
 </style>
 
 
@@ -31,7 +149,61 @@
       </div>
     </div>
   </div>
-  <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br>
+  
+<h1 class="border border-light" style="border-radius:15px; padding:10px; padding-left: 75px; margin-top:10px; color:rgb(255, 255, 255); background-color:rgb(24, 24, 24); margin-right:500px;margin-left:300px;">Bienvenido a <b>JUGADORES DEL DESIERTO!</b></h1>
+<h3 class="border border-light" style="border-radius:15px; padding:10px; padding-left: 83px; margin-top:10px; color:rgb(255, 255, 255); background-color:rgb(24, 24, 24); margin-right:300px; margin-left:700px;">Un blog dedicado a <u>BLACK DESERT ONLINE</u></h3>
+
+
+
+
+<div id="carouselExampleCaptions" class="carousel slide" style="display:inline-block;" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    {% for noticia in ultimas_noticias %}
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active" aria-current="true"{% endif %} aria-label="Slide {{ forloop.counter }}" style="height:10px; background-color:rgb(0, 0, 0);"></button>
+    {% endfor %}
+  </div>
+  <div class="carousel-inner">
+    {% for noticia in ultimas_noticias %}
+      <div class="carousel-item {% if forloop.first %}active{% endif %}" style="color: #000000;">
+        <a href="{{ noticia.get_absolute_url }}">
+          <img src="{{ noticia.imagen.url }}" class="d-block mx-auto" style="width:900px; height:550px;" alt="...">
+        </a>
+        <div class="carousel-caption d-none d-md-block">
+          <a href="{{ noticia.get_absolute_url }}"><h3 style="font-size:30px; background-color:rgb(36, 36, 36);">{{ noticia.titulo }}</h3><br></a>
+          <a href="{{ noticia.get_absolute_url }}"><p style="background-color: rgb(36, 36, 36);">{{ noticia.resumen }}</p></a>
+        </div>
+      </div>
+    {% endfor %}
+    
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+
+</div>
+
+<div style="position:relative">
+<p class="border border-light" id="enlinea" style="padding:7px; border-radius:15px; color:rgb(255, 255, 255); width:600px; background-color:rgb(36, 36, 36)">Black Desert Online (BDO) es un MMORPG sandbox, de mundo abierto, lleno de acción y espectaculares gráficos de nueva generación. Ha sido desarrollado con el motor gráfico que Pearl Abyss desarrolló exclusivamente para él. BDO tiene lugar en un mundo de fantasía y su historia se desenvuelve entre el conflicto de dos grandes naciones rivales, la República de Calpheon y el Reino de Valencia. El juego cuenta con un extenso mundo para explorar que actualmente consta de varias regiones: Calpheon, Mediah, Valencia, Serendia, Balenos, Kamasilvia, entre otras.</p>
+<p class="border border-light" id="enlinea2" style="padding:7px; border-radius:15px; color:rgb(255, 255, 255); width:600px; background-color:rgb(36, 36, 36)">BDO da a los jugadores un control total sobre sus personajes, ya que su sistema de combate se centra en la habilidad del jugador para ejecutar los diferentes combos. Serán los propios jugadores los que tengan que apuntar, esquivar y ejecutar cada combo de forma manual. BDO también les permitirá llegar a cualquier lugar con sus controles de movimiento, con el que podrán escalar paredes, edificios, explorar ciudades e interactuar con casas, árboles y diversos obstáculos.</p>
+</div>
+
+
+<div style="position: relative;">
+  <a href="{% url 'personajes' %}"><img id="clases" class="border border-light" src="{% static 'clases.jpg' %}" style="width:450px; height:200px; border-radius: 40px;"></a>
+  <span class="clases"></span>
+  <a href="{% url 'mapa' %}"><img id="map" class="border border-light" src="{% static 'map.jpg' %}" style="width:450px; height:200px; border-radius: 40px;"></a>
+  <span class="mapa"></span>   
+</div>
+<div style="position:relative">
+  <img src="{% static 'requisitos.jpg' %}" style="position:absolute; bottom:45px; right:160px; width:800px; height:350px; border-radius:15px;">
+  <span class="requisitos"></span>
+</div>
+
   
 
 {% endblock %}
