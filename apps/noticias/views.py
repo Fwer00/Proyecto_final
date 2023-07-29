@@ -61,6 +61,7 @@ def Eliminar_Comentario(request, id):
     com.delete()
     return redirect(reverse_lazy('noticias:inicio'))
 
+@login_required
 def Comentar_Noticia(request):
     comentario = request.POST.get('comentario', None)
     user = request.user
