@@ -33,14 +33,23 @@
               {% endif %}
 
             </ul> 
-
-
-        
-          
+               
         </div>
       </div>
 
     </nav>
+
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="font-family: 'Marcellus', serif; background-color: rgba(0, 0, 0); border-radius: 3px; width:140px; position: relative; left: 100px; top: -70px; font-size: 20px;">
+        Ordenar por
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="font-family: 'Marcellus', serif; border-radius: 3px; width:140px; position: relative; left: 100px; top: -55px; font-size: 20px;">
+        <li><a class="dropdown-item" href="/noticias/{% for i in noticias %}?ATOZ={{i.id}} {% endfor %}">Nombre: A-Z</a></li>
+        <li><a class="dropdown-item" href="/noticias/{% for i in noticias %}?ZTOA={{i.id}} {% endfor %}">Nombre: Z-A</a></li>
+        <li><a class="dropdown-item" href="/noticias/{% for i in noticias %}?RTOA={{i.id}} {% endfor %}">Fecha: Recientes</a></li>
+        <li><a class="dropdown-item" href="/noticias/{% for i in noticias %}?ATOR={{i.id}} {% endfor %}">Nombre: Antiguos</a></li>
+      </ul>
+    </div>
     
     {% for noticia in noticias %}
       

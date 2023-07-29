@@ -11,8 +11,21 @@ from .forms import ComentarioForm
 class Inicio(View):
     def get(self, request, *args, **kwargs):
         id_categoria = request.GET.get('id', None)
+        ATOZID = request.GET.get('ATOZ')
+        ZTOAID = request.GET.get('ZTOA')
+        RTOAID = request.GET.get('RTOA')
+        ATORID = request.GET.get('ATOR')
+        print(ATOZID)
         if id_categoria:
             n = Noticia.objects.filter(categoria_noticia=id_categoria)
+        elif ATOZID:
+            n = Noticia.objects.order_by('titulo')
+        elif ZTOAID:
+            n = Noticia.objects.order_by('-titulo')
+        elif RTOAID:
+            n = Noticia.objects.order_by('-fecha')
+        elif ATORID:
+            n = Noticia.objects.order_by('fecha')
         else:
             n = Noticia.objects.all() 
 
