@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Nosotros {% endblock  %}
+
+{% block content %}
+
+
+<div class="border border-light asd" style="border-radius: 25px; color: rgb(0, 0, 0); padding: 180px; margin-right: 1px; background-image: url('{% static 'fondo.jpg' %}'); background-size: 100% 100%;">
+  <h1 class="border border-light" style="color: white; display:inline-block; border-radius: 12px; padding:5px; background-color: rgb(36, 36, 36);">Acerca de nosotros:</h1>
+  <h2 class="border border-light" style="color: white; display:inline-block; border-radius: 12px; padding:5px; background-color: rgb(36, 36, 36);">Somos alumnos del Informatorio 2023, Grupo 3-Comision 5, y prospectos de desarrolladores web.</h2>
+  <h3 class="border border-light" style="color: white; display:inline-block; border-radius: 12px; padding:5px; background-color: rgb(36, 36, 36);">Este blog, es nuestro primer proyecto juntos, el cual, desarrollamos con mucho cariño y esfuerzo, así como también muchas horas invertidas en él, estamos orgullosos del producto final, que tambien marca el final de la 2° etapa del curso. Nos estaremos viendo pronto...</h3>
+  <div class="container-fluid">
+    <div class="row" style="margin-top:2px;">
+      <div class="col text-white border border-light" style="padding-top:13px;font-size: 35px;border-radius:20px; background-color:rgb(36, 36, 36); display:inline-block;">
+        <p>Bernardo Dinerstein</p>
+      </div style="margin-top:2px;">
+      <div class="col text-white border border-light" style="padding-top:13px;font-size: 35px;border-radius:20px; background-color:rgb(36, 36, 36); display:inline-block;">
+        <p style="padding-left:28px;">Nicolás Ramirez</p>
+      </div style="margin-top:2px;">
+      <div class="col text-white border border-light" style="padding-top:13px;font-size: 35px;border-radius:20px; background-color:rgb(36, 36, 36); display:inline-block;">
+        <p>Sol Fernández D'Elia</p>
+      </div style="margin-top:2px;">
+      <div class="col text-white border border-light" style="padding-top:13px;font-size: 35px;border-radius:20px; background-color:rgb(36, 36, 36); display:inline-block;">
+        <p style="padding-left:15px;">Fernando Ramirez</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}

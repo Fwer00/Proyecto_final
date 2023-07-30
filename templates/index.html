@@ -131,7 +131,12 @@
   background-color: rgb(125, 125, 125);
   border-radius: 15px;
 }
-
+.imagen-fondo {
+  background-image: url('{% static 'fondonot.jpg' %}');
+  background-size: 100% 100%;
+  width: 900px;
+  height: 550px;
+}
 
 </style>
 
@@ -139,7 +144,8 @@
 
   <div class="container-fluid p-4" id="fotito">
     <div class="container-fluid d-flex flex-column justify-content-center" style="height: 10vh;" id="achicar">
-      <a class="btn btn-dark" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+      <a class="btn btn-dark" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" style="width:120px; position:relative; right:35px;">
+        <div>TRAILER</div>
         <i class="fas fa-arrow-down"></i>
       </a>
     </div>
@@ -156,7 +162,7 @@
 
 
 
-<div id="carouselExampleCaptions" class="carousel slide" style="display:inline-block;" data-bs-ride="carousel">
+<div id="carouselExampleCaptions" class="carousel slide border border-light" style="display:inline-block;" data-bs-ride="carousel">
   <div class="carousel-indicators">
     {% for noticia in ultimas_noticias %}
       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active" aria-current="true"{% endif %} aria-label="Slide {{ forloop.counter }}" style="height:10px; background-color:rgb(0, 0, 0);"></button>
@@ -164,9 +170,9 @@
   </div>
   <div class="carousel-inner">
     {% for noticia in ultimas_noticias %}
-      <div class="carousel-item {% if forloop.first %}active{% endif %}" style="color: #000000;">
+      <div class="imagen-fondo carousel-item {% if forloop.first %}active{% endif %}" style="color: #000000;">
         <a href="{{ noticia.get_absolute_url }}">
-          <img src="{{ noticia.imagen.url }}" class="d-block mx-auto" style="width:900px; height:550px;" alt="...">
+          <img src="{{ noticia.imagen.url }}" class="d-block mx-auto" style="width:900px; height:550px; opacity:0.7;" alt="...">
         </a>
         <div class="carousel-caption d-none d-md-block">
           <a href="{{ noticia.get_absolute_url }}"><h3 style="font-size:30px; background-color:rgb(36, 36, 36);">{{ noticia.titulo }}</h3><br></a>
@@ -200,7 +206,7 @@
   <span class="mapa"></span>   
 </div>
 <div style="position:relative">
-  <img src="{% static 'requisitos.jpg' %}" style="position:absolute; bottom:45px; right:160px; width:800px; height:350px; border-radius:15px;">
+  <img class="border border-light" src="{% static 'requisitos.jpg' %}" style="position:absolute; bottom:45px; right:160px; width:800px; height:350px; border-radius:15px;">
   <span class="requisitos"></span>
 </div>
 
