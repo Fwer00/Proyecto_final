@@ -1,9 +1,9 @@
 from django.shortcuts import render, HttpResponse, redirect
 from .models import Noticia, Categoria, Comentario
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import UpdateView, CreateView
 from django.urls import reverse_lazy
 from django.views.generic.base import View
-from .forms import ComentarioForm
+from .forms import ComentarioForm, NoticiaForm, CategoriaForm
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 
@@ -101,7 +101,37 @@ def Comentar_Noticia(request):
          usuario=user ,noticia=noticia, texto=comentario)
     return redirect(reverse_lazy('noticias:contenido', kwargs={"pk": noti}))
 
+class Editar_NoticiaView(UpdateView):
+    model = Noticia
+    form_class = NoticiaForm
+    template_name = 'noticias/editar_noticia.html'
 
+    def get_success_url(self):
+        noticia = self.object
+        url_noticia = noticia.get_absolute_url()
+        return url_noticia
+    
+class Crear_NoticiaView(CreateView):
+    model = Noticia
+    form_class = NoticiaForm
+    template_name = 'noticias/crear_noticia.html'
+
+    def get_success_url(self):
+        return reverse_lazy('noticias:inicio')
+    
+def Eliminar_Noticia(request, id):
+    noticia = get_object_or_404(Noticia, id=id)
+    noticia.delete()
+    
+    return redirect('noticias:inicio')
+
+class Crear_CategoriaView(CreateView):
+    model = Categoria
+    form_class = CategoriaForm
+    template_name = 'noticias/crear_categoria.html'
+
+    def get_success_url(self):
+        return reverse_lazy('noticias:inicio')
 
 #BRRA BUSQUEDA
 def busqueda(request):
