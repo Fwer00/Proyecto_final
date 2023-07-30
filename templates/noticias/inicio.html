@@ -30,21 +30,18 @@
         <div>
           <center>
 
-          <div style="font-family: 'Marcellus', serif; font-size:40px; color:rgb(255, 255, 255); background-color:rgb(36, 36, 36); border-radius: 30px; margin-left:110%; margin-bottom:20px;">CATEGORIAS</div>
+          <div style="font-family: 'Marcellus', serif; font-size:40px; color:rgb(255, 255, 255); background-color:rgb(36, 36, 36); border-radius: 30px; margin-left:110%; margin-bottom:10px;">CATEGORIAS</div>
           </center>
        
             <ul class="navbar-nav me-auto mb-2 mt-1; col-12 col-lg-auto" style="transform: translateX(10%)" >
               
-              <li class="nav-item mb-3 mb-lg-0 me-lg-3 btn btn-light" style="font-family: 'Marcellus', serif; background-color: rgba(0, 0, 0); border-radius: 3px; width:85px; position: relative; left: 520px; font-size: 20px;"><a href="{% url 'noticias:inicio' %}" class="nav-link active text-light" aria-current="page">Todas</a></li>
+              <li class="nav-item  me-lg-3 btn btn-light" style="font-family: 'Marcellus', serif; background-color: rgba(0, 0, 0); border-radius: 5px; width:85px; position: relative; left: 520px; font-size: 20px;"><a href="{% url 'noticias:inicio' %}" class="nav-link active text-light" aria-current="page">Todas</a></li>
               {% for c in categorias %}
-                <li class="nav-item mb-3 mb-lg-0 me-lg-3 btn btn-light" style="font-family: 'Marcellus', serif; background-color: rgba(0, 0, 0); border-radius: 8px; right: 150px; position: relative; left: 520px; font-size: 20px;"><a href="?id={{c.pk}}" class="nav-link active text-light" aria-current="page" >{{c.nombre}}</a></li>
+                <li class="nav-item me-lg-3 btn btn-light" style="font-family: 'Marcellus', serif; background-color: rgba(0, 0, 0); border-radius: 8px; right: 150px; position: relative; left: 520px; font-size: 20px;"><a href="?id={{c.pk}}" class="nav-link active text-light" aria-current="page" >{{c.nombre}}</a></li>
               {% endfor %}
-              <!-- por si hace falta agregar categorias desde el inicio
-                {% if perms.is_superuser or perms.noticias.add_categoria  %}
-                <a href="admin/noticias/categoria/add/" type="button" class="btn text-white btn-danger">+</a>
+              {% if perms.is_superuser or perms.noticias.add_categoria  %}
+                <li><a href="admin/noticias/categoria/add/" type="button" class="nav-item mb-3 mb-lg-0 me-lg-3 btn btn-light" style="border-radius: 15px; right: 150px; position: relative; left: 520px;">+</a></li>
               {% endif %}
-              -->
-
             </ul> 
                
         </div>
@@ -53,21 +50,21 @@
     </nav>
 
     <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="font-family: 'Marcellus', serif; background-color: rgba(0, 0, 0); border-radius: 3px; width:140px; position: relative; left: 100px; top: -70px; font-size: 20px;">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="font-family: 'Marcellus', serif; background-color: rgba(0, 0, 0); border-radius: 3px; width:180px; position: relative; left: 100px; top: -70px; font-size: 20px;">
         Ordenar por
       </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="font-family: 'Marcellus', serif; border-radius: 3px; width:140px; position: relative; left: 100px; top: -55px; font-size: 20px;">
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="font-family: 'Marcellus', serif; border-radius: 3px; width:180px; position: relative; left: 100px; top: -55px; font-size: 20px;">
         <li><a class="dropdown-item" href="/noticias/{% for i in noticias %}?ATOZ={{i.id}} {% endfor %}">Nombre: A-Z</a></li>
         <li><a class="dropdown-item" href="/noticias/{% for i in noticias %}?ZTOA={{i.id}} {% endfor %}">Nombre: Z-A</a></li>
         <li><a class="dropdown-item" href="/noticias/{% for i in noticias %}?RTOA={{i.id}} {% endfor %}">Fecha: Recientes</a></li>
-        <li><a class="dropdown-item" href="/noticias/{% for i in noticias %}?ATOR={{i.id}} {% endfor %}">Nombre: Antiguos</a></li>
+        <li><a class="dropdown-item" href="/noticias/{% for i in noticias %}?ATOR={{i.id}} {% endfor %}">Fecha: Antiguos</a></li>
       </ul>
     </div>
     
     {% for noticia in noticias %}
       
-<div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary" style="background-repeat: no-repeat; background-image: url('{{ noticia.imagen.url }}'); background-size: cover; background-position: center; height: 400px; width:1500px; margin-left:6%; margin-top:2%;">
-  <div class="d-flex flex-column justify-content-center align-items-center h-100 p-5 pb-3 text-white text-shadow-1" style="background-color: rgba(0, 0, 0, 0.25); border-radius: 50px;">
+<div class="p-4 p-md-5 mb-4 text-body-emphasis bg-body-secondary border border-light" style="background-repeat: no-repeat; background-image: url('{{ noticia.imagen.url }}'); background-size: cover; background-position: center; height: 400px; width:1150px; position: relative; left:280px; margin-top:60px; border-radius:100px;">
+  <div class="d-flex flex-column justify-content-center align-items-center h-100 p-5 pb-3 text-white text-shadow-1" style="background-color: rgba(0, 0, 0, 0.25); border-radius: 300px;">
           <div class="col-lg-6 px-0">
             
             <h1 class="display-4 fst-italic" style="text-shadow: 2px 2px 4px #686868; color: rgb(255, 255, 255);">{{ noticia.titulo }}</h1>

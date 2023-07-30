@@ -79,7 +79,7 @@
                             </div>
                           </div>
                         </div>
-                        {% if not perms.is_superuser and perms.noticias.change_comentario and perms.noticias.delete_comentario and user == com.usuario %}
+                        {% if not perms.is_superuser and perms.usuarios.delete_comment and perms.usuarios.change_comment and user == com.usuario %}
                           
                           <tr>
                             <!-- Formulario para eliminar un registro desde la misma tabla HTML -->                        
