@@ -2,6 +2,18 @@
 
 {% block title %} Busqueda {% endblock %}
 
+{% block buscador %}
+<li style="padding-left: 30px; position:absolute; left:850px; top:30px;">
+  <div style="background-color: rgb(36, 36, 36); padding: 7px; border-radius: 15px; padding-left: 47px;">
+    <form class="d-flex; navbar-nav" style="padding-right:15%;" method=POST action="{% url 'noticias:busqueda' %}">
+      {% csrf_token %}
+      <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search" name="busquedaa">
+      <button class="btn btn-outline-light" type="submit">Buscar</button>
+    </form>
+  </div>
+</li>
+{% endblock %}  
+
 {% block content %}
     <center>
 
