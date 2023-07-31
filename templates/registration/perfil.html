@@ -9,14 +9,14 @@
   <br>
   <div>
     {% if user.imagen %}
-      <img src="{{ user.imagen.url }}" alt="Profile picture" width="150" height="150">
+      <img class="border border-light" style="border-radius:15px;" src="{{ user.imagen.url }}" alt="Profile picture" width="300" height="300">
     {% else %}
-      <img src="{% static 'user-default.jpg' %}" alt="Default profile picture" width="150" height="150">
+      <img class="border border-light" style="border-radius:15px;" src="{% static 'user-default.jpg' %}" alt="Default profile picture" width="300" height="300">
     {% endif %}
   </div>
   <br>
   <div>
-    <a href="{% url 'apps.usuarios:editar_perfil' %}" class="btn btn-dark">Cambiar imagen de perfil</a>
+    <a href="{% url 'apps.usuarios:editar_perfil' %}" class="btn btn-dark border border-light" style="background-color: rgb(0, 0, 0); color:white;">Cambiar imagen de perfil</a>
   </div>
 </center>
 {% endblock %}
