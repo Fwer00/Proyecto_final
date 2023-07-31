@@ -6,27 +6,28 @@
 
     <center>
         <form method="POST" style="margin-top:50px;">
-            <h1 class="h1">Iniciar sesión</h1>
+            <h1 class="h1" style="color:white;">Iniciar sesión</h1>
             <br>
             <div class="messages">
                 {% for message in messages %}
-                    <table {% if message.tags %} class="{{ message.tags}}" {% endif %}>{{ message}}</table>
+                <table {% if message.tags %} class="{{ message.tags}}" {% endif %}>{{ message}}</table>
                 {% endfor %}
             </div>
             <br>
             {% csrf_token %}
             <div class="container">
-                <table>{{ form }}</table>
+                <h6 style="color:white;">Nombre de usuario: <br>{{ form.username }}</h6> 
+                <h6 style="color:white;">Contraseña: <br> {{ form.password }}</h6> 
                 <br>
-                <a style="color: black;">¿Todavía no estás registrado?</a>
-                <a style="color: black;" href="{% url 'apps.usuarios:registrar' %}">Regístrate.</a>
+                <a style="color: white; color:white;">¿Todavía no estás registrado?</a>
+                <a style="color: white; color:white;" href="{% url 'apps.usuarios:registrar' %}">Regístrate.</a>
                 <br><br>
-                <button type="submit" class="btn btn-success btn-lg px-3">Iniciar sesión</button>
+                <button type="submit" class="btn btn-success btn-lg px-3" style="color:white;">Iniciar sesión</button>
             </div>
         </form>
         <div>
             <br>
-            <a style="color: black;" href="{% url 'apps.usuarios:password_reset' %}">¿Olvidaste tu contraseña?</a>
+            <a style="color: white;" href="{% url 'apps.usuarios:password_reset' %}">¿Olvidaste tu contraseña?</a>
         </div>
         <br>
         <br>

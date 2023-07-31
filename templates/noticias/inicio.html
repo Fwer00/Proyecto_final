@@ -39,8 +39,10 @@
               {% for c in categorias %}
                 <li class="nav-item me-lg-3 btn btn-light" style="font-family: 'Marcellus', serif; background-color: rgba(0, 0, 0); border-radius: 8px; right: 150px; position: relative; left: 520px; font-size: 20px;"><a href="?id={{c.pk}}" class="nav-link active text-light" aria-current="page" >{{c.nombre}}</a></li>
               {% endfor %}
-              {% if perms.is_superuser or perms.noticias.add_categoria  %}
-                <li><a href="admin/noticias/categoria/add/" type="button" class="nav-item mb-3 mb-lg-0 me-lg-3 btn btn-light" style="border-radius: 15px; right: 150px; position: relative; left: 520px;">+</a></li>
+              {% if perms.is_superuser or perms.usuarios.add_categoria  %}
+              <form method="POST" action="{% url 'noticias:create_cate' %}">{% csrf_token %}
+                <li><a href="{% url 'noticias:create_cate' %}" type="button" class="nav-item mb-3 mb-lg-0 me-lg-3 btn btn-light" style="border-radius: 15px; right: 150px; position: relative; left: 520px;">+</a></li>
+              </form>
               {% endif %}
             </ul> 
                
@@ -63,7 +65,7 @@
     
     {% for noticia in noticias %}
       
-<div class="p-4 p-md-5 mb-4 text-body-emphasis bg-body-secondary border border-light" style="background-repeat: no-repeat; background-image: url('{{ noticia.imagen.url }}'); background-size: cover; background-position: center; height: 400px; width:1150px; position: relative; left:280px; margin-top:60px; border-radius:100px;">
+<div class="p-4 p-md-5 mb-4 text-body-emphasis bg-body-secondary border border-light" style="background-repeat: no-repeat; background-image: url('{{ noticia.imagen.url }}'); background-size: cover; background-position: center; height: 400px; width:1150px; position: relative; left:380px; margin-top:60px; border-radius:100px;">
   <div class="d-flex flex-column justify-content-center align-items-center h-100 p-5 pb-3 text-white text-shadow-1" style="background-color: rgba(0, 0, 0, 0.25); border-radius: 300px;">
           <div class="col-lg-6 px-0">
             
@@ -86,10 +88,12 @@
      
     {% endfor %}
 
-    {% if perms.is_superuser or perms.noticias.add_noticia  %}
+    {% if perms.is_superuser or perms.usuarios.add_noticia  %}
+    <form method="POST" action="{% url 'noticias:create' %}">{% csrf_token %}
       <div align="center" class="container" class="btn_crear mb-3">
-        <a href="admin/noticias/noticia/add/" type="button" class="btn btn-danger" style="margin-top:10px;">Agregar noticia</a>
+        <a href="{% url 'noticias:create' %}" type="button" class="btn btn-danger" style="margin-top:10px;">Agregar noticia</a>
       </div>
+    </form>
     {% endif %}
     <br></br><br></br><br></br>
 {% endblock content%}

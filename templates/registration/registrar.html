@@ -6,7 +6,7 @@
 
     <center>
         <form method="POST" enctype="multipart/form-data" style="margin-top: 15px; margin-bottom:15px;">
-            <h1 class="h1">Registro de usuario</h1>
+            <h1 class="h1" style="color:white;">Registro de usuario</h1>
             <div class="messages">
                 {% for message in messages %}
                     <table {% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</table>
@@ -16,39 +16,39 @@
             {% csrf_token %}
             <br>
             <div class="container-fluid">
-                <h6>Nombre de usuario: {{ form.username }}</h6> 
+                <h6 style="color:white;">Nombre de usuario: {{ form.username }}</h6> 
             </div>
             <br>
             <div class="container-fluid">
-                <h6>Nombre: {{ form.first_name }}</h6>
+                <h6 style="color:white;">Nombre: {{ form.first_name }}</h6>
             </div>
             <br>
             <div class="container-fluid">
-                <h6>Apellido: {{ form.last_name }}</h6> 
+                <h6 style="color:white;">Apellido: {{ form.last_name }}</h6> 
             </div>
             <br>
             <div class="container-fluid">
-                <h6>Contraseña: {{ form.password1 }}</h6>
-                <h10>-Debe contener al menos 8 caracteres.</h10><br>
-                <h10>-No puede estar formada exclusivamente por numeros.</h10>
+                <h6 style="color:white;">Contraseña: {{ form.password1 }}</h6>
+                <h10 style="color:white;">-Debe contener al menos 8 caracteres.</h10><br>
+                <h10 style="color:white;">-No puede estar formada exclusivamente por numeros.</h10>
             </div>
             <br>
             <div class="container-fluid">
-                <h6>Confirmar contraseña: {{ form.password2 }}</h6>
+                <h6 style="color:white;">Confirmar contraseña: {{ form.password2 }}</h6>
             </div>
             <br>
             <div class="container-fluid">
-                <h6>Correo electronico: {{ form.email }} </h6>
+                <h6 style="color:white;">Correo electronico: {{ form.email }} </h6>
             </div>
             <br>
             <div class="container-fluid">
-                <h6>Imagen de perfil: {{ form.imagen }} </h6>
+                <h6 style="color:white;">Imagen de perfil: {{ form.imagen }} </h6>
             </div>
             <br>
             <button type="submit" class="btn btn-success btn-lg px-3">Registrar</button>
         </form>
-        <a style="color: black;">¿Ya estás registrado? </a>
-        <a style="color: black;" href="{% url 'apps.usuarios:login' %}">Inicia sesión</a>
+        <a style="color: black; color:white;">¿Ya estás registrado? </a>
+        <a style="color: black; color:white;" href="{% url 'apps.usuarios:login' %}">Inicia sesión</a>
         
 
     </center>
