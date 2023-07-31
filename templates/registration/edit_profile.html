@@ -3,10 +3,14 @@
 {% block title %}Editar Perfil{% endblock %}
 
 {% block content %}
-  <h1>Editar Perfil</h1>
-  <form method="post" enctype="multipart/form-data">
+<center>
+  <h1 style="color: white;">Editar Perfil</h1>
+  <forms style="color: white;" method="post" enctype="multipart/form-data">
     {% csrf_token %}
+    <br>
     {{ form.as_p }}
+    <br>
     <button type="submit">Guardar Cambios</button>
   </form>
+</center>
 {% endblock %}

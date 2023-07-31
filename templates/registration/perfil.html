@@ -4,7 +4,9 @@
 {% block title %}Perfil{% endblock %}
 
 {% block content %}
-  <h1>Bienvenido, {{ user.username }}!</h1>
+<center>
+  <h1 style="color: white;">Bienvenido, {{ user.username }}!</h1>
+  <br>
   <div>
     {% if user.imagen %}
       <img src="{{ user.imagen.url }}" alt="Profile picture" width="150" height="150">
@@ -12,8 +14,9 @@
       <img src="{% static 'user-default.jpg' %}" alt="Default profile picture" width="150" height="150">
     {% endif %}
   </div>
+  <br>
   <div>
     <a href="{% url 'apps.usuarios:editar_perfil' %}" class="btn btn-dark">Cambiar imagen de perfil</a>
   </div>
-
+</center>
 {% endblock %}
