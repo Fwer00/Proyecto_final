@@ -23,7 +23,11 @@
               {% csrf_token %}
               <div class="d-flex justify-content-center">
                 <a href="{% url 'noticias:editar_noti' noticia.pk %}" title="Editar" type="button" class="btn btn-primary" style="border-radius: 7px; margin-bottom:10px;"> Editar </a>
-                <button class="btn btn-danger" onclick='return Borrar()' type="submit" style="margin-bottom:10px;">Eliminar</button>
+                <button class="btn btn-danger" onclick='return Borrar1()' type="submit" style="margin-bottom:10px;">Eliminar</button>
+                <script>
+                  function Borrar1()
+                  {if(confirm('¿Estas seguro que deseas borrar esta Noticia?')){return true;}else{return false;}}
+                  </script>
               </div>
             </form>
           </tr>
@@ -79,7 +83,7 @@
                             </div>
                           </div>
                         </div>
-                        {% if not perms.is_superuser and perms.usuarios.delete_comment and perms.usuarios.change_comment and user == com.usuario %}
+                        {% if not perms.is_superuser and perms.usuarios.delete_comment and perms.usuarios.change_comment and perms.usuarios.your_comment and user == com.usuario %}
                           
                           <tr>
                             <!-- Formulario para eliminar un registro desde la misma tabla HTML -->                        

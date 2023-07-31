@@ -19,6 +19,7 @@ def add_user_to_miembro_group(sender, instance:Usuario, created, **kwargs):
             perm4 = Permission.objects.create(codename="add_noticia", name='Can add noticia', content_type=ct)
             perm5 = Permission.objects.create(codename="change_noticia", name='Can change noticia', content_type=ct)
             perm6 = Permission.objects.create(codename="delete_noticia", name='Can delete noticia', content_type=ct)
+            perm7 = Permission.objects.create(codename="your_comment", name='View your comment', content_type=ct)
             colaboradores.permissions.add(perm1, perm2, perm3, perm4, perm5, perm6)
-            miembros.permissions.add(perm1, perm2)
+            miembros.permissions.add(perm1, perm2, perm7)
         instance.groups.add(miembros)
