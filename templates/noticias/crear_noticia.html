@@ -1,13 +1,12 @@
 {% extends 'base.html' %}
-
-{% block title %} Editar {% endblock %}
+{% block title %} Crear {% endblock %}
 
 {% block content %}
-  <h1>Editando comentario</h1>
-    <div class="form-group">
+  <h1 class="text-light text-shadow">Creando Noticia</h1>
+    <div class="form-group text-light text-shadow">
       <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form.as_div }} 
         <button class="btn btn-secondary" type="submit" >Guardar</button>
         <a href="{% url 'noticias:inicio' %}" class=" btn btn-danger" type="button">Cancelar</a>
       </form>
