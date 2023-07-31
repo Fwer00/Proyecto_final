@@ -16,7 +16,8 @@
             <br>
             {% csrf_token %}
             <div class="container">
-                <table>{{ form }}</table>
+                <h6 style="color:white;">Nombre de usuario: <br>{{ form.username }}</h6> 
+                <h6 style="color:white;">Contraseña: <br> {{ form.password }}</h6> 
                 <br>
                 <a style="color: white; color:white;">¿Todavía no estás registrado?</a>
                 <a style="color: white; color:white;" href="{% url 'apps.usuarios:registrar' %}">Regístrate.</a>
