@@ -4,6 +4,19 @@
 
 {% block content %}
 
+<style>
+  #fotito {
+    background-image: url("https://wallpapercave.com/wp/wp2343903.jpg");
+    background-size: cover; 
+    background-position: center;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px; 
+    border: 2px solid #000000
+      }
+</style>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,6 +29,20 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
   </head>
+
+<div class="container-fluid p-4" id="fotito">
+    <div class="container-fluid d-flex flex-column justify-content-center" style="height: 10vh;" id="achicar">
+      <a class="btn btn-dark" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" style="width:120px; position:relative; right:35px;">
+        <div>TRAILER</div>
+        <i class="fas fa-arrow-down"></i>
+      </a>
+    </div>
+    <div class="collapse" id="collapseExample" id="opacidad1">
+      <div class="card card-body video-container" id="opacidad1">
+        <iframe width="500" height="450" src="https://www.youtube.com/embed/DD4zMOvRrzM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+    </div>
+</div>
 
   <center>
     <h1 class="border border-light" style="border-radius:15px; padding:10px; padding-left: 75px; margin-top:10px; color:rgb(255, 255, 255); background-color:rgb(24, 24, 24); margin-right:500px;margin-left:400px;">Bienvenido a <b>JUGADORES DEL DESIERTO!</b></h1>
