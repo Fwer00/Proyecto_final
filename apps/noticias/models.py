@@ -18,7 +18,7 @@ class Noticia(models.Model):
     cuerpo = models.TextField(null=False)
     fecha = models.DateTimeField(auto_now_add=True)
     imagen = models.ImageField(upload_to='noticias', null=True)
-    categoria_noticia = models.ForeignKey(Categoria, on_delete=models.PROTECT, default=1)
+    categoria_noticia = models.ForeignKey(Categoria, on_delete=models.CASCADE, default=1)
 
     #class Meta:
     #   ordering = ('-fecha',)
